@@ -1,0 +1,20 @@
+.seat {
+display: inline-block;
+margin: 5px;
+background-color: #3D4A52;
+height: 20px;
+width: 20px;
+border-radius: 5px;
+border: none;
+
+}
+.seat:focus {
+    background-color: red;
+}
+.booking {
+    background-color: green;
+}
+
+.booked {
+    background-color: #BFBEBD;
+}

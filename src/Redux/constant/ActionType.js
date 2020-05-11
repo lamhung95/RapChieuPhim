@@ -1,0 +1,6 @@
+export const GET_LIST_MOVIE = "GET_LIST_MOVIE";
+export const GET_THEATER_LOGO = "GET_THEATER_LOGO";
+export const GET_THEATER = "GET_THEATER";
+export const GET_DETAIL_MOVIE = "GET_DETAIL_MOVIE";
+export const GET_LIST_SEAT = "GET_LIST_SEAT";
+ 
