@@ -4,6 +4,7 @@ import * as action from "./../../../Redux/action";
 // import TicketSelect from "./TicketSelect";
 // import "./../../../SASS/Booking.scss";
 import "./../../../SASS/CheckboxBooking/seat-item.scss";
+import CountDownTime from "./CountDownTime"
 
 class SeatSelect extends PureComponent {
   constructor(props) {
@@ -76,6 +77,8 @@ class SeatSelect extends PureComponent {
     return (
       <div className="container">
         <div className="col-12 border form-inline">
+          <div><CountDownTime/> </div>
+        
           <div className="col-8 ">
             <div className="form-check-inline">
               <span>A </span>
