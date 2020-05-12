@@ -48,26 +48,31 @@ class SeatSelect extends PureComponent {
   };
   handleClick = (stt) => {
     const { danhSachGhe } = this.props.Seat;
-    // console.log(this.props.Seat);
     const checking = danhSachGhe.find((item) => {
       return item.stt === stt;
     });
     if (checking) {
       this.setState({
-        checkingSeat: [checking, ...this.state.checkingSeat],
+        checkingSeat: [...this.state.checkingSeat, checking],
       });
     }
-
-    console.log(this.state.checkingSeat);
+    // console.log(this.state.checkingSeat);
+  };
+  seatChecking = () => {
+    const getSeat = this.state.checkingSeat;
+    return getSeat.map((item) => {
+      return <td key={item.maGhe}>{item.tenGhe}</td>;
+    });
   };
   totalTicket = () => {
-    const xx = this.state.checkingSeat;
-    console.log(xx);
+    const getPrice = this.state.checkingSeat.map((item) => item.giaVe);
+    const total = getPrice.reduce((x,y)=>x+y,0)
+    return (
+    <td>{total}</td>
+    )
   };
 
   render() {
-    const seatCheck = this.state.checkingSeat
-    console.log(seatCheck.tenGhe)
     return (
       <div className="container">
         <div className="col-12 border form-inline">
@@ -172,25 +177,24 @@ class SeatSelect extends PureComponent {
           </div>
 
           <div className="col-4 border-left">
-            <table className="table">
-              {this.renderMovie()}
-            </table>
+            <table className="table">{this.renderMovie()}</table>
             <table>
               <tbody>
-              <tr>
-                <td>Ghế chọn</td>
-                <td>{seatCheck.tenGhe}</td>
-              </tr>
                 <tr>
-                  <td>Tổng tiền:</td>
+                  <td>Ghế chọn:</td>
+                  {this.seatChecking()}
                 </tr>
                 <tr>
-                  <td>{this.totalTicket()}</td>
+                  <td>Tổng tiền:</td>
+                  {this.totalTicket()}
+                </tr>
+                <tr>
+                  <td></td>
                 </tr>
               </tbody>
             </table>
             <div>
-              <button className="btn btn-success btn-block">
+              <button className="btn btn-success btn-block" type="submit">
                 BOOKING TICKET
               </button>
             </div>
