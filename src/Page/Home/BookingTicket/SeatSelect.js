@@ -4,7 +4,7 @@ import * as action from "./../../../Redux/action";
 // import TicketSelect from "./TicketSelect";
 // import "./../../../SASS/Booking.scss";
 import "./../../../SASS/CheckboxBooking/seat-item.scss";
-import CountDownTime from "./CountDownTime"
+import CountDownTime from "./CountDownTime";
 
 class SeatSelect extends PureComponent {
   constructor(props) {
@@ -47,38 +47,57 @@ class SeatSelect extends PureComponent {
       );
     }
   };
-  handleClick = (stt) => {
+
+  handleClick = (event, sttt) => {
     const { danhSachGhe } = this.props.Seat;
-    const checking = danhSachGhe.find((item) => {
-      return item.stt === stt;
-    });
-    if (checking) {
+    console.log(event.target.checked);
+      const checking = danhSachGhe.find((item) => {
+        return item.stt === sttt;
+      });
+      if (event.target.checked === true) {
       this.setState({
         checkingSeat: [...this.state.checkingSeat, checking],
       });
+    } else {
+      const seatChecked = [...this.state.checkingSeat]
+      const getIndex = seatChecked.findIndex(item=>{
+        return item.stt===sttt
+      })
+      console.log(getIndex)
+      if(getIndex){
+        // const xx = this.state.checkingSeat
+        seatChecked.splice(getIndex,1)
+        console.log(seatChecked)
+        this.setState({
+          checkingSeat:seatChecked
+        })
+        console.log(this.state.checkingSeat)
+      }
     }
-    // console.log(this.state.checkingSeat);
+    console.log(this.state.checkingSeat);
   };
+
   seatChecking = () => {
     const getSeat = this.state.checkingSeat;
     return getSeat.map((item) => {
       return <td key={item.maGhe}>{item.tenGhe}</td>;
     });
   };
+
   totalTicket = () => {
     const getPrice = this.state.checkingSeat.map((item) => item.giaVe);
-    const total = getPrice.reduce((x,y)=>x+y,0)
-    return (
-    <td>{total}</td>
-    )
+    const total = getPrice.reduce((x, y) => x + y, 0);
+    return <td>{total}</td>;
   };
 
   render() {
     return (
       <div className="container">
         <div className="col-12 border form-inline">
-          <div><CountDownTime/> </div>
-        
+          <div>
+            <CountDownTime />{" "}
+          </div>
+
           <div className="col-8 ">
             <div className="form-check-inline">
               <span>A </span>
@@ -89,7 +108,7 @@ class SeatSelect extends PureComponent {
                     type="checkbox"
                     value="1"
                     hidden
-                    onChange={() => this.handleClick("01")}
+                    onChange={(event) => this.handleClick(event, "01")}
                   />
                   <span></span>
                 </label>
@@ -100,7 +119,7 @@ class SeatSelect extends PureComponent {
                     type="checkbox"
                     value="1"
                     hidden
-                    onChange={() => this.handleClick("02")}
+                    onChange={(event) => this.handleClick(event, "02")}
                   />
                   <span></span>
                 </label>
@@ -111,7 +130,7 @@ class SeatSelect extends PureComponent {
                     type="checkbox"
                     value="1"
                     hidden
-                    onChange={() => this.handleClick("03")}
+                    onChange={(event) => this.handleClick(event, "03")}
                   />
                   <span></span>
                 </label>
