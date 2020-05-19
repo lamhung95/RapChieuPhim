@@ -12,6 +12,7 @@ class DetailMovie extends Component {
  
   renderHTML = () => {
     const { movie } = this.props;
+    console.log(this.props)
     if (movie.lichChieu) {
       return movie.lichChieu.map((item) => {
         return (

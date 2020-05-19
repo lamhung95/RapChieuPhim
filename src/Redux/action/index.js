@@ -52,6 +52,7 @@ export const actGetDetailMovieAPI = (id) => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
     })
       .then((rs) => {
+        // console.log(rs.data)
         dispatch(actGetDetailMovie(rs.data));
       })
       .catch((err) => {

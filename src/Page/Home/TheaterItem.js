@@ -14,7 +14,7 @@ export default class TheaterItem extends Component {
     renderHTML=()=>{
         return Axios({
             method:"GET",
-            url:`http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
+            // url:`http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
         }).then(rs=>{
             console.log(rs.data)
         }).catch(err=>{

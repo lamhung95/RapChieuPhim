@@ -7,15 +7,16 @@ class TheaterList extends Component {
   componentDidMount() {
     this.props.getTheater();
     this.props.getTheaterLogo();
+    console.log(this.props)
   }
 
-  renderlogo = (di) => {
+  renderlogo = (id) => {
     const theaterLogo = this.props.listTheaterLogo;
     if (theaterLogo.length > 0) {
-      const xx = theaterLogo.find((item) => item.maHeThongRap === di);
+      const getLogo = theaterLogo.find((item) => item.maHeThongRap === id);
       return (
         <div>
-            <img className="img-fluid" src={xx.logo} alt="" />
+            <img className="img-fluid" src={getLogo.logo} alt="" />
         </div>
       );
     }
@@ -32,7 +33,7 @@ class TheaterList extends Component {
       <div className="container">
         <div className="col-9">
             <div className="row">
-              <div className="col-3">
+              <div className="col-4">
                 <div
                   className="nav flex-column nav-pills"
                   id="v-pills-tab"
@@ -107,7 +108,59 @@ class TheaterList extends Component {
                   </a>
                 </div>
               </div>
-              <div className="col-9">
+              <div className="col-4">
+                <div className="tab-content" id="v-pills-tabContent">
+                  <div
+                    className="tab-pane fade show active"
+                    id="v-pills-home"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-home-tab"
+                  >
+                    ...
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="v-pills-settings"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-profile-tab"
+                  >
+                    {this.renderTheater()}
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="v-pills-messages"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-messages-tab"
+                  >
+                    ...
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="v-pills-profile"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-settings-tab"
+                  >
+                    ...
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="v-pills-settings"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-settings-tab"
+                  >
+                    ...
+                  </div>
+                  <div
+                    className="tab-pane fade"
+                    id="v-pills-settings"
+                    role="tabpanel"
+                    aria-labelledby="v-pills-settings-tab"
+                  >
+                    ...
+                  </div>
+                </div>
+              </div>
+              <div className="col-4">
                 <div className="tab-content" id="v-pills-tabContent">
                   <div
                     className="tab-pane fade show active"

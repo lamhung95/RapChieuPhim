@@ -65,9 +65,7 @@ class SeatSelect extends PureComponent {
       })
       console.log(getIndex)
       if(getIndex){
-        // const xx = this.state.checkingSeat
         seatChecked.splice(getIndex,1)
-        console.log(seatChecked)
         this.setState({
           checkingSeat:seatChecked
         })
