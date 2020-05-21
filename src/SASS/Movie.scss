@@ -1,15 +1,25 @@
-.img-content{
-    width: fit-content;
-    
-    
-}
+// .img-content{
+//     width: 210px;
+// }
 
 .img-item {
-    max-width: fit-content !important;
-    height: 100px !important;
+    box-shadow: 1px 1px 10px;
+    margin: auto;
+    margin-top: 1px;
+    width: 200px;
+    height: 300px !important;
+    border-radius: 3px;
+
     align-items: center !important;
     text-align: center !important;
 }
 .movie-title{
     text-align: center;
+}
+
+.movie-name {
+    height: 80px;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
 }

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Movie from "./../../Component/movie";
 import { connect } from "react-redux";
 import * as action from "../../Redux/action";
-import Xx from "./../../Component/xx";
+// import Xx from "./../../Component/xx";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -22,9 +22,11 @@ class CalendarScreening extends Component {
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 4,
+      rows: 2,
     };
     return (
-      <Slider {...settings}>
+      <div className="show-list-movie">
+        <Slider {...settings}>
           {this.props.listMovie.map((item) => {
             return (
               <div key={item}>
@@ -33,7 +35,8 @@ class CalendarScreening extends Component {
               </div>
             );
           })}
-      </Slider>
+        </Slider>
+      </div>
     );
   }
 }

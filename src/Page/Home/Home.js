@@ -1,20 +1,25 @@
 import React, { Component } from "react";
-import CalendaSreening from "./CalendarScreening";
-import TheaterList from "./TheaterList";
-import SearchBar from "./SearchBar";
+// import CalendaSreening from "./CalendarScreening";
+// import TheaterList from "./TheaterList";
+// import SearchBar from "./SearchBar";
+// import Navbar from "./../../Component/Navbar"
 // import Xx from "./../../Component/xx";
 
-// import "./../../SASS/Home.scss";
+import "./../../SASS/Home.scss";
 
 export default class Home extends Component {
   render() {
     return (
-      <div className="col-sm-9 container">
-        <div>
+      <div className="col-sm-8 container">
+        {/* <div className="search">
           <SearchBar />
-          <CalendaSreening />
-          <TheaterList />
         </div>
+        <div className="calendar">
+          <CalendaSreening />
+        </div>
+        <div className="theater-list">
+          <TheaterList />
+        </div> */}
       </div>
     );
   }
