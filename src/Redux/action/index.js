@@ -76,6 +76,26 @@ export const actGetListSeatAPI = (id) => {
   };
 };
 
+export const actLoginAPI =(user,history)=>{
+  return dispatch =>{
+    Axios({
+      method:"POST",
+      url:"http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      data:user,
+    }).then (rs=>{
+      if(rs.data.maLoaiNguoiDung === "QuanTri"){
+        localStorage.setItem("userAdmin", JSON.stringify(rs.data));
+        history.push("/login/dashboard")
+      }
+      else {
+        alert("Khong co quyen truy cap")
+      }
+    }).catch(err=>{
+      console.log(err.response.data)
+    })
+  }
+}
+
 export const actGetListMovie = (listMovie) => {
   return {
     type: ActionType.GET_LIST_MOVIE,

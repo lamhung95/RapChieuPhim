@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./../SASS/Nav-bar.scss";
+// import Login from "./../Page/Home/Login/Login"
 
 export default class Navbar extends Component {
   render() {
@@ -36,10 +37,11 @@ export default class Navbar extends Component {
             </NavLink>
           </li>
           <li className="nav-item nav-menu">
-            <NavLink activeClassName="active" className="nav-link" to="/apps">
+            <NavLink activeClassName="active" className="nav-link" to="/Login">
               Apps
             </NavLink>
           </li>
+          <li><NavLink activeClassName="active" className="nav-link" to="/Login">Đăng Nhập</NavLink></li>
         </ul>
       </nav>
     );

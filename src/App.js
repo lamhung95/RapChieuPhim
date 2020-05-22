@@ -1,7 +1,9 @@
 import React from "react";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Hometemplate from "./Template/HomeTemplate";
-import { RouterHome } from "./routes";
+import AdminTemplate from "./Template/AdminTemplate"
+import Login from "./Page/Home/Login"
+import { RouterHome, RouterAddmin } from "./routes";
 
 const ShowMenuHome = (routes) => {
   if (routes && routes.length > 0) {
@@ -17,12 +19,28 @@ const ShowMenuHome = (routes) => {
     });
   }
 };
+const showMenuAdmin = routes => {
+  if (routes && routes.length > 0) {
+    return routes.map((item, index) => {
+      return (
+        <AdminTemplate
+          key={index}
+          exact={item.exact}
+          path={item.path}
+          Component={item.component}
+        />
+      );
+    });
+  }
+};
 
 function App() {
   return (
     <BrowserRouter>
       <div>
         <Switch>{ShowMenuHome(RouterHome)}</Switch>
+        <Switch>{showMenuAdmin(RouterAddmin)}</Switch>
+        <Route exact={false} path="/Login" component={Login}/>
       </div>
     </BrowserRouter>
   );

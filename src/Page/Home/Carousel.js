@@ -5,13 +5,11 @@ export default class Carousel extends Component {
     return (
       <div>
         <div id="demo" className="carousel slide" data-ride="carousel">
-          {/* Indicators */}
           <ul className="carousel-indicators">
             <li data-target="#demo" data-slide-to={0} className="active" />
             <li data-target="#demo" data-slide-to={1} />
             <li data-target="#demo" data-slide-to={2} />
           </ul>
-          {/* The slideshow */}
           <div className="carousel-inner">
             <div className="carousel-item active">
               <img src="https://s3img.vcdn.vn/123phim/2020/05/8-15894431015434.png" alt="Los Angeles" />
@@ -23,7 +21,6 @@ export default class Carousel extends Component {
               <img src="https://s3img.vcdn.vn/123phim/2020/05/sugar-daddy-15894440672175.jpg" alt="New York" />
             </div>
           </div>
-          {/* Left and right controls */}
           <a className="carousel-control-prev" href="#demo" data-slide="prev">
             <span className="carousel-control-prev-icon" />
           </a>

@@ -4,8 +4,11 @@ import News from "./Page/Home/News";
 import Apps from "./Page/Home/Apps";
 import TheaterList from "./Page/Home/TheaterList";
 import DetailMovie from "./Page/Home/DetailMovie";
-// import TabPanel from "./Page/Home/BookingTicket/index"
-import SeatSelect from "./Page/Home/BookingTicket/SeatSelect"
+import SeatSelect from "./Page/Home/BookingTicket/SeatSelect";
+
+// import Login from "./Page/Home/Login";
+
+import DashBoard from "./Page/Admin/DashBoard";
 
 const RouterHome = [
   {
@@ -39,10 +42,28 @@ const RouterHome = [
     component: DetailMovie,
   },
   {
-    path:"/booking-ticket/:id",
-    exact:false,
+    path: "/booking-ticket/:id",
+    exact: false,
     component: SeatSelect,
-  }
+  },
+  // {
+  //   path:"/login",
+  //   exact:false,
+  //   component:Login,
+  // }
 ];
 
-export { RouterHome };
+const RouterAddmin = [
+  // {
+  //   path: "/Login",
+  //   exact: false,
+  //   component: Login,
+  // },
+  {
+    path: "/Login/dashboard",
+    exact: false,
+    component: DashBoard,
+  },
+];
+
+export { RouterHome, RouterAddmin };
