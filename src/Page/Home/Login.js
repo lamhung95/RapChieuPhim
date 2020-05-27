@@ -1,32 +1,34 @@
 import React, { Component } from "react";
-import {connect} from "react-redux"
-import * as action from "./../../Redux/action"
+import { connect } from "react-redux";
+import * as action from "./../../Redux/action";
+import "./../../SASS/Login.scss";
 
 class Login extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      taiKhoan:"",
-      matKhau:"",
-    }
+    this.state = {
+      taiKhoan: "",
+      matKhau: "",
+    };
   }
   handleOnchange = (event) => {
     const { name, value } = event.target;
     this.setState({
-      [name]:value
-    })
+      [name]: value,
+    });
   };
-  handleSubmit=event=>{
+  handleSubmit = (event) => {
     event.preventDefault();
-    this.props.login(this.state, this.props.history)
-  }
+    this.props.login(this.state, this.props.history);
+  };
   render() {
     return (
-      <div className="container">
+      // <div className="container">
+      <div className="container login-content col-6">
         <h3>Đăng Nhập</h3>
         <div className="row">
           <div className="col-sm-6 mx-auto">
-            <form onSubmit={this.handleSubmit}>
+            <form className="form-content" onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label>Username</label>
                 <input
@@ -47,21 +49,22 @@ class Login extends Component {
                   onChange={this.handleOnchange}
                 />
               </div>
-              <button type="submit" className="btn btn-success">
+              <button type="submit" className="btn btn-success xx">
                 Login
               </button>
             </form>
           </div>
         </div>
       </div>
+      // </div>
     );
   }
 }
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     login: (user, history) => {
       dispatch(action.actLoginAPI(user, history));
-    }
+    },
   };
 };
-export default connect(null,mapDispatchToProps) (Login)
+export default connect(null, mapDispatchToProps)(Login);

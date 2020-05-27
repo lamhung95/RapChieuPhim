@@ -1,48 +1,47 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./../SASS/Nav-bar.scss";
-// import Login from "./../Page/Home/Login/Login"
 
 export default class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-sm bg-light navbar-light">
-        <ul className="navbar-nav">
-          <li className="nav-item active">
+      <nav className="navbar navbar-expand-sm">
+        <div className="home-fix">
+          <div className="nav-item active">
             <NavLink activeClassName="active" className="nav-link" to="/">
               HOME
             </NavLink>
-          </li>
-          <li className="nav-item nav-menu">
-            <NavLink
-              activeClassName="active"
-              className="nav-link"
-              to="/CalendarScreening"
-            >
-              Calendar Screeaning
+          </div>
+        </div>
+        <div className="row head-menu">
+          <div className="nav-item nav-menu">
+            <NavLink className="nav-link" to="/CalendarScreening">
+              <span>Lịch Chiếu</span>
             </NavLink>
-          </li>
-          <li className="nav-item nav-menu">
-            <NavLink
-              activeClassName="active"
-              className="nav-link"
-              to="/theater"
-            >
-              Theater
+          </div>
+          <div className="nav-item nav-menu">
+            <NavLink className="nav-link" to="/theater">
+              <span>Cụm Rạp</span>
             </NavLink>
-          </li>
-          <li className="nav-item nav-menu">
-            <NavLink activeClassName="active" className="nav-link" to="/news">
-              News
+          </div>
+          <div className="nav-item nav-menu">
+            <NavLink className="nav-link" to="/news">
+              <span>Tin Tức</span>
             </NavLink>
-          </li>
-          <li className="nav-item nav-menu">
-            <NavLink activeClassName="active" className="nav-link" to="/Login">
-              Apps
+          </div>
+          <div className="nav-item nav-menu">
+            <NavLink className="nav-link" to="/Login">
+              <span>Ứng dụng</span>
             </NavLink>
-          </li>
-          <li><NavLink activeClassName="active" className="nav-link" to="/Login">Đăng Nhập</NavLink></li>
-        </ul>
+          </div>
+        </div>
+        <div className="nav-login">
+          <div className="nav-item nav-menu">
+            <NavLink activeClassName="active" className="nav-link" to="/login">
+              <span>Đăng Nhập</span>
+            </NavLink>
+          </div>
+        </div>
       </nav>
     );
   }

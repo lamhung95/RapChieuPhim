@@ -46,21 +46,11 @@ const RouterHome = [
     exact: false,
     component: SeatSelect,
   },
-  // {
-  //   path:"/login",
-  //   exact:false,
-  //   component:Login,
-  // }
 ];
 
 const RouterAddmin = [
-  // {
-  //   path: "/Login",
-  //   exact: false,
-  //   component: Login,
-  // },
   {
-    path: "/Login/dashboard",
+    path: "/login/dashboard",
     exact: false,
     component: DashBoard,
   },

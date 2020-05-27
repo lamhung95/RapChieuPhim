@@ -1,0 +1,30 @@
+.logo-img {
+    width: 70px;
+    height: 70px;
+    text-align: center;
+}
+.logo-content {
+    max-width: 20% !important;
+    text-align: center !important;
+    border-right: .5px solid #dee2e6;
+    margin-left: 15px;
+    
+}
+.theater-nav {
+    border-right: 1px solid #dee2e6;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.theater-item {
+    width:200px;
+    display: grid;
+    border-bottom: 1px solid;
+    padding: 10px;
+}
+.theater-nav-item {
+    height: 600px;
+}
+.theater-content {
+    border-top: none;
+    box-shadow: 1px 1px 10px;
+}

@@ -2,10 +2,31 @@
     box-shadow: 0 0 15px rgba(0,0,0,.3);
     z-index: 9999;
     top: 0px;
+    background-color:  rgba(255,255,255,.95);
 }
-
-.navbar-nav {
-    width: 100%;
-    text-align: center !important;
-    align-items: center !important;
+.home-fix {
+    // position: absolute;
+    // top: 50%;
+    // left: 20px;
+    // transform: translateY(-50%);
+    // width: 50px;
+}
+.head-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: black !important;
+}
+.navbar .nav-login{
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    transform: translateY(-50%);
+}
+.nav-link {
+    color: black !important;
+}
+.nav-link span:hover {
+    color: #FA5272;
 }

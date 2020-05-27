@@ -23,7 +23,7 @@ export default function AdminTemplate({ Component, ...props }) {
             </AdminLayout>
           );
         } else {
-          return <Redirect to="/Login" />;
+          return <Redirect to="/login" />;
         }
       }}
     />

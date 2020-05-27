@@ -15,13 +15,16 @@ export default class Home extends Component {
         <div className="">
           <Carousel />
         </div>
-        <div className="col-sm-8 container">
-          <div className="search">
-            <SearchBar />
+        <div className="col-sm-8 container title-fix">
+          <h3>LỊCH CHIẾU</h3>
+          <div className="form-movie-show">
+            <div className="calendar">
+              <SearchBar />
+              <span>Đang Chiếu</span>
+              <CalendaSreening />
+            </div>
           </div>
-          <div className="calendar">
-            <CalendaSreening />
-          </div>
+          <h3>CỤM RẠP</h3>
           <div className="theater-list">
             <TheaterList />
           </div>

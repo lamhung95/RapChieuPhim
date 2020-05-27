@@ -1,5 +1,3 @@
-
-
 .show-movie{
     // background-image: url("https://wallpaperset.com/w/full/4/6/7/96482.jpg");
     // background-repeat: no-repeat;
@@ -10,7 +8,7 @@
 }
 .search {
     margin:10px;
-    width: 400px;
+    // width: 400px;
     margin-right: 0px;
 }
 .sear-form {
@@ -19,6 +17,21 @@
 .calendar {
     margin-bottom: 50px;
 }
+.calendar{
+    text-align: right !important;
+    margin: 10px;
+}
+.calendar span {
+    font-size: 25px;
+    color: #FA5238;
+}
 .slick-dots {
     bottom: -2px !important;
+}
+.form-movie-show {
+    box-shadow: 1px 1px 10px;
+}
+.title-fix h3 {
+    text-align: center;
+    color: #FA5238;
 }

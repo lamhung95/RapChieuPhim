@@ -34,7 +34,7 @@ export const actGetTheaterAPI = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=cgv",
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01",
     })
       .then((rs) => {
         dispatch(actGetTheater(rs.data));
