@@ -83,15 +83,10 @@ export const actLoginAPI =(user,history)=>{
       url:"http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
       data:user,
     }).then (rs=>{
-      if(rs.data.maLoaiNguoiDung === "QuanTri"){
-        localStorage.setItem("userAdmin", JSON.stringify(rs.data));
-        history.push("/login/dashboard")
-      }
-      else {
-        alert("Khong co quyen truy cap")
-      }
+        localStorage.setItem("user",JSON.stringify(rs.data));
+        history.push("/")
     }).catch(err=>{
-      console.log(err.response.data)
+      alert(err.response.data)
     })
   }
 }

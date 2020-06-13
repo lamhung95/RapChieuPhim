@@ -16,7 +16,7 @@ export default function AdminTemplate({ Component, ...props }) {
     <Route
       {...props}
       render={propsComponent => {
-        if (localStorage.getItem("userAdmin")) {
+        if (localStorage.getItem("user")) {
           return (
             <AdminLayout>
               <Component {...propsComponent} />

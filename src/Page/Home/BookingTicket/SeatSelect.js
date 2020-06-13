@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as action from "./../../../Redux/action";
 // import TicketSelect from "./TicketSelect";
 // import "./../../../SASS/Booking.scss";
-import "./../../../SASS/CheckboxBooking/seat-item.scss";
+import "./../../../SASS/Booking.scss";
 import CountDownTime from "./CountDownTime";
 
 class SeatSelect extends PureComponent {
@@ -48,38 +48,59 @@ class SeatSelect extends PureComponent {
     }
   };
 
+  renderTheater = () => {
+    const theater = this.props.Seat;
+    console.log(theater);
+    if (theater.thongTinPhim) {
+      return (
+        <div className="booking-theater">
+          <div className="booking-theater-name">
+            {theater.thongTinPhim.tenCumRap}
+          </div>
+          <div className="booking-theater-address">
+            {theater.thongTinPhim.diaChi}
+          </div>
+        </div>
+      );
+    }
+  };
+
   handleClick = (event, sttt) => {
     const { danhSachGhe } = this.props.Seat;
-    console.log(event.target.checked);
-      const checking = danhSachGhe.find((item) => {
-        return item.stt === sttt;
-      });
-      if (event.target.checked === true) {
+    // console.log(event.target.checked);
+    const checking = danhSachGhe.find((item) => {
+      return item.stt === sttt;
+    });
+    // console.log(checking);
+    if (event.target.checked === true) {
+      // console.log(checking);
       this.setState({
         checkingSeat: [...this.state.checkingSeat, checking],
       });
     } else {
-      const seatChecked = [...this.state.checkingSeat]
-      const getIndex = seatChecked.findIndex(item=>{
-        return item.stt===sttt
-      })
-      console.log(getIndex)
-      if(getIndex){
-        seatChecked.splice(getIndex,1)
+      const seatUncheck = [...this.state.checkingSeat];
+      const getIndex = seatUncheck.findIndex((item) => {
+        return item.stt === sttt;
+      });
+      console.log(getIndex);
+      if (getIndex) {
+        seatUncheck.splice(getIndex, 1);
+        console.log(seatUncheck);
         this.setState({
-          checkingSeat:seatChecked
-        })
-        console.log(this.state.checkingSeat)
+          checkingSeat: seatUncheck,
+        });
       }
     }
     console.log(this.state.checkingSeat);
   };
-
   seatChecking = () => {
     const getSeat = this.state.checkingSeat;
-    return getSeat.map((item) => {
-      return <td key={item.maGhe}>{item.tenGhe}</td>;
-    });
+    // console.log(getSeat);
+    if (getSeat) {
+      return getSeat.map((item) => {
+        return <td key={item.maGhe}>{item.tenGhe}</td>;
+      });
+    }
   };
 
   totalTicket = () => {
@@ -91,107 +112,1489 @@ class SeatSelect extends PureComponent {
   render() {
     return (
       <div className="container">
-        <div className="col-12 border form-inline">
-          <div>
-            <CountDownTime />{" "}
-          </div>
-
-          <div className="col-8 ">
-            <div className="form-check-inline">
-              <span>A </span>
-              <div id="ck-button">
-                <label>
-                  <input
-                    id="1"
-                    type="checkbox"
-                    value="1"
-                    hidden
-                    onChange={(event) => this.handleClick(event, "01")}
-                  />
-                  <span></span>
-                </label>
+        <div className="col-12 border form-inline booking-content">
+          <div className="col-8 container booking-list-seat ">
+            <div>
+              <div>{this.renderTheater()}</div>
+              <div>
+                <CountDownTime />
               </div>
-              <div id="ck-button">
-                <label>
-                  <input
-                    type="checkbox"
-                    value="1"
-                    hidden
-                    onChange={(event) => this.handleClick(event, "02")}
-                  />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input
-                    type="checkbox"
-                    value="1"
-                    hidden
-                    onChange={(event) => this.handleClick(event, "03")}
-                  />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
-              </div>
-              <div id="ck-button">
-                <label>
-                  <input type="checkbox" value="1" hidden />
-                  <span></span>
-                </label>
+            </div>
+            <div className="screen-item">
+              <h6>Screen</h6>
+            </div>
+            <div className="seat-content">
+              <div className="seatList">
+                <div className="seat-inline">
+                  <span>A </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "01")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "02")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "03")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "04")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "05")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "06")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "07")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "08")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "09")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "10")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "11")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "12")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "13")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>B </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "14")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "15")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "16")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "17")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "17")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "19")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "20")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "21")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "22")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "23")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "24")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "25")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "26")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>C </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "27")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "28")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "29")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "30")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "31")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "32")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "33")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "34")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "35")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "36")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "37")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "38")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "39")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>D </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "40")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "41")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "42")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "43")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "44")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "45")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "46")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "47")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "48")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "49")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "50")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "51")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "52")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>E </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "53")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "54")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "55")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "56")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "57")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "58")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "59")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "60")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "61")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "62")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "63")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "64")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "65")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>F </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "66")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "67")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "68")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "69")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "70")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "71")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "72")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "73")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "74")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "75")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "76")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "77")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "78")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>G </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "79")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "80")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "81")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "82")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "83")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "84")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "85")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "86")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "87")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "88")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "89")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "90")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "91")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>H </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "92")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "93")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "94")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "95")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "96")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "97")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "98")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "99")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "100")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "101")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "102")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "103")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "104")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>I </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "105")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "106")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "107")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "108")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "109")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "110")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "111")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "112")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "113")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "114")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "115")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "116")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "117")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
+                <div className="seat-inline">
+                  <span>J </span>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        id="1"
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "118")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "119")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "200")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "201")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "202")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "203")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "204")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "205")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "206")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "207")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "208")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "209")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                  <div id="ck-button">
+                    <label>
+                      <input
+                        type="checkbox"
+                        value="1"
+                        hidden
+                        onChange={(event) => this.handleClick(event, "210")}
+                      />
+                      <span></span>
+                    </label>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

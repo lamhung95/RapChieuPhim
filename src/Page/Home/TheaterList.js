@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "./../../Redux/action/index";
-import Theater from "./../../Component/Theater";
+// import Theater from "./../../Component/Theater";
 
 import "./../../SASS/Theater.scss";
 import SimpleBar from "simplebar-react";
@@ -11,7 +11,7 @@ class TheaterList extends Component {
   componentDidMount() {
     this.props.getTheater();
     this.props.getTheaterLogo();
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   renderlogo = (id) => {
@@ -29,17 +29,17 @@ class TheaterList extends Component {
 
   renderTheater = () => {
     const theater = this.props.listTheater;
-    console.log(theater);
-    if (theater) {
-      return theater.map((item) => {
-        // console.log(item.lstCumRap)
-        return (
-          <div key={item.maHeThongRap}>
-            <div>{item.lstCumRap.tenCumRap}</div>
-          </div>
-        );
-      });
-    }
+    // console.log(theater);
+    // if (theater) {
+    //   return theater.map((item) => {
+    //     // console.log(item.lstCumRap)
+    //     // return (
+    //     //   <div key={item.maHeThongRap}>
+    //     //     <div>{item.lstCumRap.tenCumRap}</div>
+    //     //   </div>
+    //     // );
+    //   });
+    // }
 
     //   return theater.listTheater.map((item) => {
     //     console.log(item)

@@ -11,6 +11,12 @@ class Login extends Component {
       matKhau: "",
     };
   }
+  handleLogin = () => {
+    // console.log(this.props)
+    // const getAcount = this.state.taiKhoan
+    // localStorage.setItem('taiKhoan',getAcount)
+    // alert(localStorage.getItem('userAdmin'))
+  };
   handleOnchange = (event) => {
     const { name, value } = event.target;
     this.setState({
@@ -23,7 +29,6 @@ class Login extends Component {
   };
   render() {
     return (
-      // <div className="container">
       <div className="container login-content col-6">
         <h3>Đăng Nhập</h3>
         <div className="row">
@@ -49,14 +54,17 @@ class Login extends Component {
                   onChange={this.handleOnchange}
                 />
               </div>
-              <button type="submit" className="btn btn-success xx">
+              <button
+                type="submit"
+                className="btn btn-success xx"
+                onClick={this.handleLogin()}
+              >
                 Login
               </button>
             </form>
           </div>
         </div>
       </div>
-      // </div>
     );
   }
 }

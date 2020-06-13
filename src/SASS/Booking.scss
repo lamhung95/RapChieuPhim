@@ -1,20 +1,117 @@
-.seat {
-display: inline-block;
-margin: 5px;
-background-color: #3D4A52;
-height: 20px;
-width: 20px;
-border-radius: 5px;
-border: none;
+div label input {
+    margin-right:100px;
+  }
+  body {
+     font-family:sans-serif;
+  }
+  
+  .checkbox {
+    opacity: 0;
+  }
+  
+  #ck-button{
+    display: block;
+     margin:5px;
+     background-color:#3D4A52;
+     border-radius:4px;
+     overflow:auto;
+     float:left;
+     box-shadow: .5px .5px 2px;
+  }
+  
+  
+  #ck-button label {
+     width: 20px;
+     height: 20px;
+     float:left;
+  
+  }
+  
+  #ck-button label span {
+     width: 20px;
+     height: 20px;
+     text-align:center;
+     padding:3px 0px;
+     display:block;
+  }
+  
+  #ck-button label input{
+     position:absolute;
+     background-color: red;
+     top:-20px;
+  }
+  
+  #ck-button input:checked  +span{
+     background-color:#911;
+     color:#fff;
+  }
+
+  //body
+
+  .booking-content {
+      top: 100px;
+      box-shadow: 1px 1px 10px;
+      height: 500px;
+  }
+  .countDownTime {
+      max-width: 100px;
+      margin-bottom: 15px;
+      margin-top: 0px;
+      text-align: center;
+      float: right;
+  }
+  .countDownTime span p {
+   // text-align: center;
+     margin-bottom: 0px;
+     margin-right: 0px;
+     right: 0px;
+  }
+  .countDownTime .title-time {
+   font-size: 12px;
+
+  }
+  .countDownTime .count-time {
+     font-size: 30px;
+  }
+
+.screen-item {
+    background-color: black;
+    max-height: 20px;
+    width: 70%;
+    text-align: center !important;
+    margin: auto;
+    margin-top: 75px;
+    margin-bottom: 50px;
+    color: green;
+}
+.seatList {
+    width: 70%;
+    display:flex;
+    flex-wrap: wrap;
+   margin: auto;
+}
+.seat-inline {
+   margin: auto;
+   display: inline-flex;
+}
+.seat-inline span {
+   // margin-right: 10px;
+   text-align: center;
+   align-items: center;
+}
+.booking-theater {
+   max-width: 80%;
+   float: left;
+}
+.booking-theater-name {
+   // float: left;
+   // max-width: 80%;
 
 }
-.seat:focus {
-    background-color: red;
-}
-.booking {
-    background-color: green;
+.booking-theater-address {
+   // float: left;
 }
 
-.booked {
-    background-color: #BFBEBD;
+.y{
+   float: right;
 }

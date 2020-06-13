@@ -32,13 +32,16 @@ export default class CountDownTime extends Component {
   render() {
     const { minutes, seconds } = this.state;
     return (
-      <div>
+      <div className="countDownTime">
         {minutes === 0 && seconds === 0 ? (
           <h1>Busted!</h1>
         ) : (
-          <h1>
-            Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-          </h1>
+          <span>
+            <p className="title-time">Thời gian giữ ghế</p>
+            <p className="count-time">
+              {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+            </p>
+          </span>
         )}
       </div>
     );

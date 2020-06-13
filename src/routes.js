@@ -17,6 +17,11 @@ const RouterHome = [
     component: Home,
   },
   {
+    path:"/login/home",
+    exact:true,
+    component:Home,
+  },
+  {
     path: "/CalendarScreening",
     exact: false,
     component: CalendarScreening,
@@ -50,7 +55,7 @@ const RouterHome = [
 
 const RouterAddmin = [
   {
-    path: "/login/dashboard",
+    path: "/dashboard",
     exact: false,
     component: DashBoard,
   },

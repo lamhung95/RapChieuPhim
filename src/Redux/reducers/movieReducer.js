@@ -6,6 +6,10 @@ let initialState = {
   listTheater: [],
   listDetailMovie: {},
   listSeat:{},
+  login:{
+    isLogin:false,
+    tenTaiKhoan:"",
+  }
 };
 
 const movieReducer = (state = initialState, action) => {

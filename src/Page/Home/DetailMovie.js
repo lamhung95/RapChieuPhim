@@ -12,7 +12,7 @@ class DetailMovie extends Component {
     const id = this.props.match.params.id;
     this.props.getDetailMovie(id);
     this.props.getTheaterLogo();
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   renderlogo = (id) => {
@@ -27,13 +27,13 @@ class DetailMovie extends Component {
     }
   };
 
-  renderHTML = () => {
+  renderHTML = (id) => {
     const { movie } = this.props;
     // console.log(movie.lichChieu);
-    if (movie.lichChieu) {
+    if (movie.lichChieu && movie.lichChieu !== -1) {
       return movie.lichChieu.map((item) => {
-        console.log(item.thoiLuong)
-        if ((item.thongTinRap.maHeThongRap === "CGV") === true) {
+        if ((item.thongTinRap.maHeThongRap === id) === true) {
+          console.log(item);
           return (
             <div key={item.maLichChieu} className="show-time-theater row">
               <div className="show-time-details">
@@ -106,9 +106,9 @@ class DetailMovie extends Component {
                   className="nav-link active"
                   id="v-pills-home-tab"
                   data-toggle="pill"
-                  href="#v-pills-cgv"
+                  href="#v-pills-home"
                   role="tab"
-                  aria-controls="v-pills-cgv"
+                  aria-controls="v-pills-home"
                   aria-selected="true"
                 >
                   {this.renderlogo("CGV")}
@@ -117,9 +117,9 @@ class DetailMovie extends Component {
                   className="nav-link"
                   id="v-pills-profile-tab"
                   data-toggle="pill"
-                  href="#v-pills-bhdstar"
+                  href="#v-pills-profile"
                   role="tab"
-                  aria-controls="v-pills-bhdstar"
+                  aria-controls="v-pills-profile"
                   aria-selected="false"
                 >
                   {this.renderlogo("BHDStar")}
@@ -128,9 +128,9 @@ class DetailMovie extends Component {
                   className="nav-link"
                   id="v-pills-messages-tab"
                   data-toggle="pill"
-                  href="#v-pills-cinestar"
+                  href="#v-pills-messages"
                   role="tab"
-                  aria-controls="v-pills-cinestar"
+                  aria-controls="v-pills-messages"
                   aria-selected="false"
                 >
                   {this.renderlogo("CineStar")}
@@ -139,9 +139,9 @@ class DetailMovie extends Component {
                   className="nav-link"
                   id="v-pills-settings-tab"
                   data-toggle="pill"
-                  href="#v-pills-galaxy"
+                  href="#v-pills-settings"
                   role="tab"
-                  aria-controls="v-pills-galaxy"
+                  aria-controls="v-pills-settings"
                   aria-selected="false"
                 >
                   {this.renderlogo("Galaxy")}
@@ -172,55 +172,66 @@ class DetailMovie extends Component {
             </div>
             <div className="col-9 detailsMovie-listMovie">
               <div className="tab-content" id="v-pills-tabContent">
-                <SimpleBar style={{ height: 500 }}>
-                  <div
-                    className="tab-pane fade show active"
-                    id="v-pills-cgv"
-                    role="tabpanel"
-                    aria-labelledby="v-pills-home-tab"
-                  >
-                    {this.renderHTML()}
-                  </div>
-                </SimpleBar>
+                <div
+                  className="tab-pane fade show active"
+                  id="v-pills-home"
+                  role="tabpanel"
+                  aria-labelledby="v-pills-home-tab"
+                >
+                  <SimpleBar style={{ height: 500 }}>
+                    {this.renderHTML("CGV")}
+                  </SimpleBar>
+                </div>
+
                 <div
                   className="tab-pane fade"
-                  id="v-pills-bhdstar"
+                  id="v-pills-profile"
                   role="tabpanel"
                   aria-labelledby="v-pills-profile-tab"
                 >
-                  ...
+                  <SimpleBar style={{ height: 500 }}>
+                    {this.renderHTML("BHDStar")}
+                  </SimpleBar>
                 </div>
                 <div
                   className="tab-pane fade"
-                  id="v-pills-cinestar"
+                  id="v-pills-messages"
                   role="tabpanel"
                   aria-labelledby="v-pills-messages-tab"
                 >
-                  ...
+                  <SimpleBar style={{ height: 500 }}>
+                    {this.renderHTML("CineStar")}
+                  </SimpleBar>
                 </div>
                 <div
                   className="tab-pane fade"
-                  id="v-pills-galaxy"
+                  id="v-pills-settings"
                   role="tabpanel"
                   aria-labelledby="v-pills-settings-tab"
                 >
-                  ...
+                  <SimpleBar style={{ height: 500 }}>
+                    {this.renderHTML("Galaxy")}
+                  </SimpleBar>
                 </div>
                 <div
                   className="tab-pane fade"
                   id="v-pills-lotte"
                   role="tabpanel"
-                  aria-labelledby="v-pills-settings-tab"
+                  aria-labelledby="v-pills-lotte-tab"
                 >
-                  ...
+                  <SimpleBar style={{ height: 500 }}>
+                    {this.renderHTML("LotteCinima")}
+                  </SimpleBar>
                 </div>
                 <div
                   className="tab-pane fade"
                   id="v-pills-mega"
                   role="tabpanel"
-                  aria-labelledby="v-pills-settings-tab"
+                  aria-labelledby="v-pills-mega-tab"
                 >
-                  ...
+                  <SimpleBar style={{ height: 500 }}>
+                    {this.renderHTML("MegaGS")}
+                  </SimpleBar>
                 </div>
               </div>
             </div>
