@@ -3,13 +3,17 @@ import * as ActionType from "../constant/ActionType";
 let initialState = {
   listMovie: [],
   listTheaterLogo: [],
+  //=======
   listTheater: [],
+  listTheaterCGV: [],
+  listTheaterCineStar: [],
+  listTheaterGalaxy: [],
+  listTheaterLotte: [],
+  listTheaterMegaGS: [],
+  //=======
+  listCinemaMovieShow: {},
   listDetailMovie: {},
-  listSeat:{},
-  login:{
-    isLogin:false,
-    tenTaiKhoan:"",
-  }
+  listSeat: {},
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -20,15 +24,35 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.GET_THEATER_LOGO:
       state.listTheaterLogo = action.data;
       return { ...state };
+    //============
     case ActionType.GET_THEATER:
       state.listTheater = action.data;
+      return { ...state };
+    case ActionType.GET_THEATER_CGV:
+      state.listTheaterCGV = action.data;
+      return { ...state };
+    case ActionType.GET_THEATER_CINESTAR:
+      state.listTheaterCineStar = action.data;
+      return { ...state };
+    case ActionType.GET_THEATER_GALAXY:
+      state.listTheaterGalaxy = action.data;
+      return { ...state };
+    case ActionType.GET_THEATER_LOTTE:
+      state.listTheaterLotte = action.data;
+      return { ...state };
+    case ActionType.GET_THEATER_MAGAGS:
+      state.listTheaterMegaGS = action.data;
+      return { ...state };
+    //================
+    case ActionType.GET_CINEMA_MOVIE_SHOW:
+      state.listCinemaMovieShow = action.data;
       return { ...state };
     case ActionType.GET_DETAIL_MOVIE:
       state.listDetailMovie = action.data;
       return { ...state };
-      case ActionType.GET_LIST_SEAT:
-        state.listSeat=action.data;
-        return {...state};
+    case ActionType.GET_LIST_SEAT:
+      state.listSeat = action.data;
+      return { ...state };
     default:
       return { ...state };
   }

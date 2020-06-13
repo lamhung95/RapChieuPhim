@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Movie from "./../../Component/movie";
 import { connect } from "react-redux";
 import * as action from "../../Redux/action";
+import MovieShow from "./../../Component/MovieShow"
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -30,6 +31,7 @@ class CalendarScreening extends Component {
             return (
               <div key={item}>
                 <Movie key={item.maPhim} movie={item} />
+                {/* <MovieShow key={item.maPhim} xx={item}/> */}
               </div>
             );
           })}

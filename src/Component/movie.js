@@ -5,7 +5,7 @@ import "./../SASS/Movie.scss";
 class Movie extends Component {
   render() {
     const { movie } = this.props;
-    // console.log(movie.trailer);
+    // console.log(movie);
     return (
       <div className="movie-item">
         <Link to={`/detail-movie/${movie.maPhim}`}>

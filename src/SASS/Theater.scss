@@ -4,16 +4,19 @@
     text-align: center;
 }
 .logo-content {
-    max-width: 20% !important;
     text-align: center !important;
     border-right: .5px solid #dee2e6;
     margin-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    max-width: 15% !important;
     
 }
 .theater-nav {
     border-right: 1px solid #dee2e6;
     margin-top: 30px;
     margin-bottom: 30px;
+    max-width: 25% !important;
 }
 .theater-item {
     width:200px;
@@ -28,3 +31,21 @@
     border-top: none;
     box-shadow: 1px 1px 10px;
 }
+.address-content {
+   border-bottom: 1px solid #dee2e6;
+}
+.name-cinema {
+    overflow: hidden;
+    margin-bottom: 0px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.address-cinema {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #949494;
+    font-size: 14px;
+}
+

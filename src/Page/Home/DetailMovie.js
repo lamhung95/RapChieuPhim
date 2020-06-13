@@ -17,6 +17,7 @@ class DetailMovie extends Component {
 
   renderlogo = (id) => {
     const theaterLogo = this.props.listTheaterLogo;
+    // console.log(this.state)
     if (theaterLogo.length > 0) {
       const getLogo = theaterLogo.find((item) => item.maHeThongRap === id);
       return (
