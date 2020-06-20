@@ -11,9 +11,11 @@ let initialState = {
   listTheaterLotte: [],
   listTheaterMegaGS: [],
   //=======
-  listCinemaMovieShow: {},
+  listCinemaMovieShow: [],
   listDetailMovie: {},
   listSeat: {},
+  //======
+  listAccounts: [],
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -54,6 +56,10 @@ const movieReducer = (state = initialState, action) => {
       state.listSeat = action.data;
       return { ...state };
     default:
+      return { ...state };
+    //========
+    case ActionType.GET_ACCOUNTS:
+      state.listAccounts = action.data;
       return { ...state };
   }
 };

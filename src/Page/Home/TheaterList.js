@@ -127,12 +127,12 @@ class TheaterList extends Component {
   };
   //==============================
 
-  handleMovieShow=()=>{
-    const getMovieShow = this.props.listCinemaMovieShow
-    const id = this.state.idCinema
-    // console.log(id)
-    // console.log(xx)
-  }
+  // handleMovieShow=()=>{
+  //   const getMovieShow = this.props.listCinemaMovieShow
+  //   const id = this.state.idCinema
+  //   // console.log(id)
+  //   // console.log(xx)
+  // }
 
   render() {
     return (
@@ -273,7 +273,7 @@ class TheaterList extends Component {
               </div>
             </div>
             <div className="col-4">
-              <div>{this.handleMovieShow()}</div>
+              {/* <div>{this.handleMovieShow()}</div> */}
             </div>
           </div>
         </div>

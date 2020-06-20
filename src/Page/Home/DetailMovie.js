@@ -2,21 +2,40 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "./../../Redux/action";
 import { Link } from "react-router-dom";
+// import Calendar from "../Home/Calendar";
+
+// import moment from "moment"
+import dayjs from "dayjs";
+import range from "lodash-es/range";
 
 import "./../../SASS/Details-movie.scss";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
 
 class DetailMovie extends Component {
+  constructor(props) {
+    super(props);
+    // this.addActiveClass = this.addActiveClass.bind(this);
+    this.state = {
+      setday: [this.getToDay()],
+      // active: false,
+    };
+  }
+
+  getToDay() {
+    const d = new Date();
+    return d.getDate();
+  }
+
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.getDetailMovie(id);
     this.props.getTheaterLogo();
-    // console.log(this.props);
   }
 
   renderlogo = (id) => {
     const theaterLogo = this.props.listTheaterLogo;
+    // console.log(this.state);
     // console.log(this.state)
     if (theaterLogo.length > 0) {
       const getLogo = theaterLogo.find((item) => item.maHeThongRap === id);
@@ -27,26 +46,62 @@ class DetailMovie extends Component {
       );
     }
   };
-
   renderHTML = (id) => {
     const { movie } = this.props;
-    // console.log(movie.lichChieu);
+    // const dd = dayjs();
+    const xx = "1/2/2019";
     if (movie.lichChieu && movie.lichChieu !== -1) {
       return movie.lichChieu.map((item) => {
-        if ((item.thongTinRap.maHeThongRap === id) === true) {
+        const getDatetime = new Date(
+          item.ngayChieuGioChieu
+        ).toLocaleDateString();
+        if (
+          (item.thongTinRap.maHeThongRap === id) === true &&
+          getDatetime === xx
+        ) {
+          return (
+            <div key={item.maLichChieu} className="show-time-theater row">
+              <div className="show-time-details">
+                {/* <div>{item.thongTinRap.tenRap}</div> */}
+                <h6 className="movie-title" key={item.maCumRap}>
+                  {item.thongTinRap.tenCumRap}
+                </h6>
+                <div>{item.thoiLuong} Phút</div>
+                <div>
+                  <Link to={`/booking-ticket/${item.maLichChieu}`}>
+                    {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        }
+      });
+    }
+  };
+  renderHTML = (id) => {
+    const { movie } = this.props;
+    const xx = "1/2/2019";
+    // console.log(movie);
+    if (movie.lichChieu && movie.lichChieu !== -1) {
+      return movie.lichChieu.map((item) => {
+        const getDatetime = new Date(
+          item.ngayChieuGioChieu
+        ).toLocaleDateString();
+        if (
+          (item.thongTinRap.maHeThongRap === id) === true &&
+          getDatetime === xx
+        ) {
           console.log(item);
           return (
             <div key={item.maLichChieu} className="show-time-theater row">
               <div className="show-time-details">
                 <h6 className="movie-title">{item.thongTinRap.tenCumRap}</h6>
-                {/* <div>{item.thongTinRap.tenRap}</div> */}
-                <div>
-                  {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-                </div>
                 <div>
                   {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
                 </div>
                 <div>{item.thoiLuong} Phút</div>
+                <div>{item.thongTinRap.tenRap}</div>
               </div>
 
               <Link to={`/booking-ticket/${item.maLichChieu}`}>
@@ -58,11 +113,38 @@ class DetailMovie extends Component {
       });
     }
   };
+
+  renderDayOfWeek = () => {
+    const dd = dayjs();
+    // const boxClass = ["day-cell"];
+    console.log(dd.date());
+    const mm = dd.daysInMonth();
+    return range(mm).map((item) => {
+      const day = item + 1;
+      while (day >= dd.date() && day <= dd.date() + 6) {
+        return (
+          <div
+            className={`day-cell${
+              day === dd.date() ? " day-cell--today" : " day-cell--faded"
+            }`}
+            key={item}
+            onClick={() => {
+              this.setState({ setday: day });
+            }}
+          >
+            {day}
+          </div>
+        );
+      }
+    });
+  };
+
   componentWillUnmount() {
     this.props.resetDetailMovie();
   }
   render() {
     const { movie } = this.props;
+    console.log(movie);
     return (
       <div>
         <div className="bg-content">
@@ -83,7 +165,39 @@ class DetailMovie extends Component {
                   <div>
                     {new Date(movie.ngayKhoiChieu).toLocaleDateString()}
                   </div>
-                  <button className="btn btn-success">TRAILLER</button>
+                  <div>
+                    <div>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#myModal"
+                      >
+                        TRAILLER
+                      </button>
+                      <div className="modal" id="myModal">
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-body">
+                              <button
+                                type="button"
+                                className="close"
+                                data-dismiss="modal"
+                              >
+                                ×
+                              </button>
+                              <iframe
+                                title="trailer"
+                                width="420"
+                                height="315"
+                                src={movie.trailer}
+                              ></iframe>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="col-sm-6 detailsMovie-content-right">
@@ -172,6 +286,7 @@ class DetailMovie extends Component {
               </div>
             </div>
             <div className="col-9 detailsMovie-listMovie">
+              <div className="cld">{this.renderDayOfWeek()}</div>
               <div className="tab-content" id="v-pills-tabContent">
                 <div
                   className="tab-pane fade show active"

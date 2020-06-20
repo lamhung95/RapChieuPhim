@@ -4,3 +4,5 @@
 [0511/151534.521:ERROR:exception_snapshot_win.cc(98)] thread ID 5064 not found in process
 [0511/151534.335:ERROR:process_reader_win.cc(123)] NtOpenThread: {Access Denied} A process has requested access to an object, but has not been granted those access rights. (0xc0000022)
 [0511/151534.522:ERROR:exception_snapshot_win.cc(98)] thread ID 9152 not found in process
+[0617/192435.451:ERROR:crash_report_database_win.cc(428)] unexpected header
+[0618/114300.328:ERROR:crash_report_database_win.cc(428)] unexpected header

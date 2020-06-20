@@ -19,13 +19,16 @@ class Login extends Component {
   };
   handleOnchange = (event) => {
     const { name, value } = event.target;
+    console.log(name,value)
     this.setState({
       [name]: value,
     });
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.login(this.state, this.props.history);
+    this.props.login(this.state, this.props.history)
+    console.log(this.props.history)
+    
   };
   render() {
     return (

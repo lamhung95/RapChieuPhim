@@ -1,0 +1,14 @@
+
+.day-cell {
+  width: 100%;
+  border: 5px;
+  &--faded {
+    opacity: .4;
+  }
+
+  &--today {
+    border-radius: 99px;
+    background-color: #1abc9c;
+    color: #fff;
+  }
+}

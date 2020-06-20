@@ -94,3 +94,27 @@
     right: 30px;
     // transform: translateY(-50%);
 }
+.cld{
+    border-width: 700px;
+    display: flex;
+    border-bottom: 1px solid;
+    margin-bottom: 30px;
+    box-shadow: 1px;
+}
+.day-cell {
+    // border: 1px solid !important;
+    font-size: 40px;
+    margin:auto;
+    width: fixed;
+    &--faded {
+      opacity: .3;
+      color: black;
+    }
+    &--today {
+      color: #FA5272;
+      cursor: pointer;
+    }
+  }
+  .modal-backdrop {
+      z-index: 0 !important;
+  }

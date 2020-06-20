@@ -121,7 +121,7 @@ export const actGetTheaterMegaGSAPI = () => {
 };
 
 //=================================================================
-export const actGetCinemaMovieShowAPI = () => {
+export const actGetCinemaMovieShowAPI = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
@@ -130,7 +130,7 @@ export const actGetCinemaMovieShowAPI = () => {
     })
       .then((rs) => {
         dispatch(actgetCinemaMovieShow(rs.data));
-        console.log(rs.data)
+        // console.log(rs.data)
       })
       .catch((err) => {
         console.log(err);
@@ -175,7 +175,12 @@ export const actLoginAPI = (user, history) => {
       data: user,
     })
       .then((rs) => {
+        localStorage.setItem(
+          "accessToken",
+          JSON.stringify(rs.data.accessToken)
+        );
         localStorage.setItem("user", JSON.stringify(rs.data));
+
         history.push("/");
       })
       .catch((err) => {
@@ -183,6 +188,79 @@ export const actLoginAPI = (user, history) => {
       });
   };
 };
+
+export const actGetAccountsAPI = () => {
+  return (dispatch) => {
+    Axios({
+      method: "GET",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01",
+      // data:current,
+    })
+      .then((rs) => {
+        dispatch(actGetAccounts(rs.data));
+      })
+      .catch((err) => {
+        console.log(err.data);
+      });
+  };
+};
+export const actAdduserAPI = (user) => {
+  const userAccount = JSON.parse(localStorage.getItem("user"));
+  return () => {
+    Axios({
+      method: "POST",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${userAccount.accessToken}`,
+      },
+    })
+      .then((rs) => {
+       console.log(rs.data)
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+};
+export const actUpdateUserAPI = (user) => {
+  const userAccount = JSON.parse(localStorage.getItem("user"));
+  console.log(user)
+  return () => {
+    Axios({
+      method: "PUT",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${userAccount.accessToken}`,
+      },
+    })
+      .then((rs) => {
+        console.log(rs.data)
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+};
+
+export const actDeleteUser = (taiKhoan) => {
+  const userAccount = JSON.parse(localStorage.getItem("user"));
+  return (disptach) => {
+    Axios({
+      method: "DELETE",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+      headers: {
+        Authorization: `Bearer ${userAccount.accessToken}`,
+      },
+    });
+  };
+};
+
+//=========================////////////////
 
 export const actGetListMovie = (listMovie) => {
   return {
@@ -197,6 +275,7 @@ export const actGetTheaterLogo = (listTheaterLogo) => {
     data: listTheaterLogo,
   };
 };
+
 //==============
 export const actGetTheater = (listTheater) => {
   return {
@@ -251,5 +330,12 @@ export const actGetListSeat = (listSeat) => {
   return {
     type: ActionType.GET_LIST_SEAT,
     data: listSeat,
+  };
+};
+//===========
+export const actGetAccounts = (listAccounts) => {
+  return {
+    type: ActionType.GET_ACCOUNTS,
+    data: listAccounts,
   };
 };
