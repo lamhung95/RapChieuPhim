@@ -36,11 +36,11 @@ body {
 
 #ck-button label input{
    position:absolute;
-   background-color: red;
+   background-color: black;
    top:-20px;
 }
 
 #ck-button input:checked  +span{
-   background-color:#911;
+   background-color:black;
    color:#fff;
 }

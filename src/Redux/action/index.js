@@ -1,12 +1,12 @@
 import Axios from "axios";
 import * as ActionType from "./../constant/ActionType";
+import { urlAPI } from "./urlAPI";
 
 export const actGetListMovieAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
+      url: `${urlAPI}/QuanLyPhim/LayDanhSachPhim?maNhom=GP01`,
     }).then((rs) => {
       dispatch(actGetListMovie(rs.data));
     });
@@ -17,8 +17,7 @@ export const actGetTheaterLogoAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
+      url: `${urlAPI}/QuanLyRap/LayThongTinHeThongRap`,
     })
       .then((rs) => {
         dispatch(actGetTheaterLogo(rs.data));
@@ -33,8 +32,7 @@ export const actGetTheaterAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=BHDStar",
+      url: `${urlAPI}/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=BHDStar`,
     })
       .then((rs) => {
         dispatch(actGetTheater(rs.data));
@@ -48,8 +46,7 @@ export const actGetTheaterCGVAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=cgv",
+      url: `${urlAPI}/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=cgv`,
     })
       .then((rs) => {
         dispatch(actGetTheaterCGV(rs.data));
@@ -63,8 +60,7 @@ export const actGetTheaterCineStarAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=CineStar",
+      url: `${urlAPI}/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=CineStar`,
     })
       .then((rs) => {
         dispatch(actGetTheaterCineStar(rs.data));
@@ -78,8 +74,7 @@ export const actGetTheaterGalaxyAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=Galaxy",
+      url: `${urlAPI}/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=Galaxy`,
     })
       .then((rs) => {
         dispatch(actGetTheaterGalaxy(rs.data));
@@ -93,8 +88,7 @@ export const actGetTheaterLotteAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=LotteCinima",
+      url: `${urlAPI}/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=LotteCinima`,
     })
       .then((rs) => {
         dispatch(actGetTheaterLotteAPI(rs.data));
@@ -108,8 +102,7 @@ export const actGetTheaterMegaGSAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=MegaGS",
+      url: `${urlAPI}/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=MegaGS`,
     })
       .then((rs) => {
         dispatch(actGetTheaterMegaGS(rs.data));
@@ -125,8 +118,7 @@ export const actGetCinemaMovieShowAPI = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01",
+      url: `${urlAPI}/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01`,
     })
       .then((rs) => {
         dispatch(actgetCinemaMovieShow(rs.data));
@@ -141,7 +133,7 @@ export const actGetDetailMovieAPI = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
+      url: `${urlAPI}/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
     })
       .then((rs) => {
         // console.log(rs.data)
@@ -156,10 +148,29 @@ export const actGetListSeatAPI = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
+      url: `${urlAPI}/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
     })
       .then((rs) => {
         dispatch(actGetListSeat(rs.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+export const actBookedApi = (listBooked) => {
+  const userAccount = JSON.parse(localStorage.getItem("user"));
+  return (dispatch) => {
+    Axios({
+      method: "POST",
+      url: `${urlAPI}/QuanLyDatVe/DatVe`,
+      headers: {
+        Authorization: `Bearer ${userAccount.accessToken}`,
+      },
+      data: listBooked,
+    })
+      .then((rs) => {
+        alert(rs.data);
       })
       .catch((err) => {
         console.log(err);
@@ -171,7 +182,7 @@ export const actLoginAPI = (user, history) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      url: `${urlAPI}/QuanLyNguoiDung/DangNhap`,
       data: user,
     })
       .then((rs) => {
@@ -193,8 +204,7 @@ export const actGetAccountsAPI = () => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01",
+      url: `${urlAPI}/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`,
       // data:current,
     })
       .then((rs) => {
@@ -210,15 +220,14 @@ export const actAdduserAPI = (user) => {
   return () => {
     Axios({
       method: "POST",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+      url: `${urlAPI}/QuanLyNguoiDung/ThemNguoiDung`,
       data: user,
       headers: {
         Authorization: `Bearer ${userAccount.accessToken}`,
       },
     })
       .then((rs) => {
-       console.log(rs.data)
+        console.log(rs.data);
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -227,19 +236,18 @@ export const actAdduserAPI = (user) => {
 };
 export const actUpdateUserAPI = (user) => {
   const userAccount = JSON.parse(localStorage.getItem("user"));
-  console.log(user)
+  console.log(user);
   return () => {
     Axios({
       method: "PUT",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      url: `${urlAPI}/QuanLyNguoiDung/CapNhatThongTinNguoiDung`,
       data: user,
       headers: {
         Authorization: `Bearer ${userAccount.accessToken}`,
       },
     })
       .then((rs) => {
-        console.log(rs.data)
+        console.log(rs.data);
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -252,7 +260,7 @@ export const actDeleteUser = (taiKhoan) => {
   return (disptach) => {
     Axios({
       method: "DELETE",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
+      url: `${urlAPI}/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
       headers: {
         Authorization: `Bearer ${userAccount.accessToken}`,
       },

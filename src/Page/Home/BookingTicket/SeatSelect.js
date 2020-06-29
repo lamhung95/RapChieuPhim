@@ -5,12 +5,23 @@ import * as action from "./../../../Redux/action";
 // import "./../../../SASS/Booking.scss";
 import "./../../../SASS/Booking.scss";
 import CountDownTime from "./CountDownTime";
+// import { findIndex } from "lodash-es";
 
 class SeatSelect extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       checkingSeat: [],
+      datVe: {
+        maLichChieu: "",
+        danhSachVe: [
+          {
+            maGhe: "",
+            giaVe: "",
+          },
+        ],
+        taiKhoanNguoiDung: "",
+      },
     };
   }
   componentDidMount() {
@@ -50,7 +61,7 @@ class SeatSelect extends PureComponent {
 
   renderTheater = () => {
     const theater = this.props.Seat;
-    console.log(theater);
+    // console.log(this.state);
     if (theater.thongTinPhim) {
       return (
         <div className="booking-theater">
@@ -67,13 +78,10 @@ class SeatSelect extends PureComponent {
 
   handleClick = (event, sttt) => {
     const { danhSachGhe } = this.props.Seat;
-    // console.log(event.target.checked);
     const checking = danhSachGhe.find((item) => {
       return item.stt === sttt;
     });
-    // console.log(checking);
     if (event.target.checked === true) {
-      // console.log(checking);
       this.setState({
         checkingSeat: [...this.state.checkingSeat, checking],
       });
@@ -82,22 +90,18 @@ class SeatSelect extends PureComponent {
       const getIndex = seatUncheck.findIndex((item) => {
         return item.stt === sttt;
       });
-      console.log(getIndex);
-      if (getIndex) {
-        seatUncheck.splice(getIndex, 1);
-        console.log(seatUncheck);
-        this.setState({
-          checkingSeat: seatUncheck,
-        });
-      }
+      seatUncheck.splice(getIndex, 1);
+      this.setState({
+        checkingSeat: seatUncheck,
+      });
     }
-    console.log(this.state.checkingSeat);
   };
   seatChecking = () => {
     const getSeat = this.state.checkingSeat;
-    // console.log(getSeat);
+    console.log(getSeat);
     if (getSeat) {
       return getSeat.map((item) => {
+        // console.log(item);
         return <td key={item.maGhe}>{item.tenGhe}</td>;
       });
     }
@@ -108,8 +112,43 @@ class SeatSelect extends PureComponent {
     const total = getPrice.reduce((x, y) => x + y, 0);
     return <td>{total}</td>;
   };
+  checkSeat = () => {
+    const { danhSachGhe } = this.props.Seat;
+    const xx = this.state.checkingSeat;
+    // console.log(xx);
+    // console.log(danhSachGhe);
+    xx.map((item) => {
+      return console.log(danhSachGhe.indexOf(xx));
+    });
+  };
 
+  handleBook = () => {
+    const showTimeID = this.props.Seat.thongTinPhim.maLichChieu;
+    const getUserAccount = JSON.parse(localStorage.getItem("user"));
+    const listSeat = this.state.checkingSeat;
+    const getState = this.state.datVe;
+
+    const getTicket = listSeat.map((item) => {
+      const ticketItem = { maGhe: item.maGhe, giaVe: item.giaVe };
+      return ticketItem;
+    });
+
+    getState.maLichChieu = showTimeID;
+    getState.danhSachVe = getTicket;
+    getState.taiKhoanNguoiDung = getUserAccount.taiKhoan;
+    this.setState({
+      datVe: getState,
+    });
+    this.props.booked(this.state.datVe);
+  };
+
+  seatBooked = (id) => {
+    const listSeat = this.props.Seat;
+   
+  };
   render() {
+    const xx = this.props.Seat
+  
     return (
       <div className="container">
         <div className="col-12 border form-inline booking-content">
@@ -121,15 +160,16 @@ class SeatSelect extends PureComponent {
               </div>
             </div>
             <div className="screen-item">
-              <h6>Screen</h6>
+              <h6>Screen{this.checkSeat()}</h6>
             </div>
             <div className="seat-content">
               <div className="seatList">
                 <div className="seat-inline">
                   <span>A </span>
-                  <div id="ck-button">
+                  <div id="ck-button">                   
                     <label>
                       <input
+                      disabled={this.seatBooked("01")?true:false}
                         id="1"
                         type="checkbox"
                         value="1"
@@ -1617,7 +1657,11 @@ class SeatSelect extends PureComponent {
               </tbody>
             </table>
             <div>
-              <button className="btn btn-success btn-block" type="submit">
+              <button
+                className="btn btn-success btn-block"
+                type="submit"
+                onClick={() => this.handleBook()}
+              >
                 BOOKING TICKET
               </button>
             </div>
@@ -1636,6 +1680,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getList: (id) => {
       dispatch(action.actGetListSeatAPI(id));
+    },
+    booked: (listBooked) => {
+      dispatch(action.actBookedApi(listBooked));
     },
   };
 };

@@ -27,7 +27,7 @@ div label input {
   
   }
   
-  #ck-button label span {
+  #ck-button label:disabled span:disabled {
      width: 20px;
      height: 20px;
      text-align:center;
@@ -35,10 +35,14 @@ div label input {
      display:block;
   }
   
-  #ck-button label input{
+  #ck-button label:disabled input:disabled{
      position:absolute;
      background-color: red;
      top:-20px;
+  }
+  #ck-button input:disabled {
+   background-color:green;
+   //      color:#fff;
   }
   
   #ck-button input:checked  +span{

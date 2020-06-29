@@ -1,0 +1,1 @@
+export const urlAPI = "http://movie0706.cybersoft.edu.vn/api";
