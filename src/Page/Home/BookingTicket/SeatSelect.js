@@ -169,7 +169,6 @@ class SeatSelect extends PureComponent {
                   <div id="ck-button">                   
                     <label>
                       <input
-                      disabled={this.seatBooked("01")?true:false}
                         id="1"
                         type="checkbox"
                         value="1"
