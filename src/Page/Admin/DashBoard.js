@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../../Redux/action";
-import UpdateModal from "../../Component/UpdateModal";
+// import UpdateModal from "../../Component/UpdateModal";
 // import SimpleBar from "simplebar-react";
 class DashBoard extends Component {
   constructor(props) {
@@ -165,14 +165,12 @@ class DashBoard extends Component {
   };
   handleOnchange = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     this.setState({
       [name]: value,
     });
   };
   onChangeUpdate=(event)=>{
     const { name, value } = event.target;
-    console.log(value);
     this.setState({
       [name]: value,
     });

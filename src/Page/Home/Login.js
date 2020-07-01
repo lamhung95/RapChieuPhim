@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "./../../Redux/action";
+import {Link} from "react-router-dom"
 import "./../../SASS/Login.scss";
 
 class Login extends Component {
@@ -32,13 +33,12 @@ class Login extends Component {
   };
   render() {
     return (
+      <div className="login">
       <div className="container login-content col-6">
         <h3>Đăng Nhập</h3>
-        <div className="row">
           <div className="col-sm-6 mx-auto">
             <form className="form-content" onSubmit={this.handleSubmit}>
               <div className="form-group">
-                <label>Username</label>
                 <input
                   type="text"
                   className="form-control"
@@ -48,7 +48,6 @@ class Login extends Component {
                 />
               </div>
               <div className="form-group">
-                <label>Password</label>
                 <input
                   type="text"
                   className="form-control"
@@ -57,12 +56,15 @@ class Login extends Component {
                   onChange={this.handleOnchange}
                 />
               </div>
+              <div className="registere-account">
+                <Link to="/registereAccount"><span>Chưa có tài khoản?</span></Link>
+              </div>
               <button
                 type="submit"
-                className="btn btn-success xx"
+                className="btn btn-success"
                 onClick={this.handleLogin()}
               >
-                Login
+                Đăng Nhập
               </button>
             </form>
           </div>

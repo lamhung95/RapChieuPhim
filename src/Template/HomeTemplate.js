@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./../Component/Navbar";
+import Footer from "./../Page/Home/Footer";
 import "./../SASS/Home-template.scss";
-
 import { Route } from "react-router-dom";
 
 const HomeLayout = (props) => {
@@ -9,6 +9,7 @@ const HomeLayout = (props) => {
     <div>
       <Navbar />
       {props.children}
+      <Footer />
     </div>
   );
 };

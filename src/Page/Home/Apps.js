@@ -1,62 +1,35 @@
 import React, { Component } from "react";
-
+import "./../../SASS/App.scss";
+import xx from "./../../img/mobile.jpg";
+// import SliderApps from "./../../Component/sliderApps";
+// import s1 from "./../../img/slider/slide1.jpg";
+// import s2 from "./../../img/slider/slide2.jpg";
+// import s3 from "./../../img/slider/slide3.jpg";
 
 export default class Apps extends Component {
   render() {
     return (
-      
-
-
-      <div className="col-9 container">
-        <div className="col-12 form-inline">
-          <div className="col-9 ">
-            <button className="seat">01</button>
-            <button className="seat">01</button>
-            <button className="seat">01</button>
-            <button className="seat">01</button>
-            <button className="seat">01</button>
-            
+      <div className="app-body">
+        <div className="row app-content">
+          <div className="col-md-6 app-text">
+            <span className="text-left">Ứng dụng tiện lợi dành cho</span>
+            <br/>
+            <span className="text-left">người yêu điện ảnh</span>
+            <br />
+            <span className="text-small">
+              Không chỉ đặt vé, bạn còn có thể bình luận phim, chấm điểm rạp và
+              đổi quà hâp dẫn.
+            </span>
+            <br />
+            <button
+              className="btn btn-danger"
+              href="https://itunes.apple.com/us/app/123phim-mua-ve-lien-tay-chon/id615186197?mt=8"
+            >
+              App miễn phí - Tải về ngay
+            </button>
           </div>
-
-          <div className="col-3 border">
-            <table className="table">
-              <thead>
-                <tr>
-                  <td>
-                    <h3>Tên Phim</h3>
-                  </td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Ngày giờ chiếu:</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>Cụm rap:</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <td>Rạp:</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <td>Ghế chọn</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <td>Ưu đãi:</td>
-                  <td>@twitter</td>
-                </tr>
-                <tr>
-                  <td>Tổng tiền:</td>
-                  <td>@twitter</td>
-                </tr>
-              </tbody>
-            </table>
-            <div>
-              <button className="btn btn-seccess">BOOKING TICKET</button>
-            </div>
+          <div className="col-md-6 phone-body">
+            <img className="img-phone" src={xx} alt="" />
           </div>
         </div>
       </div>

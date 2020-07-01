@@ -31,7 +31,7 @@ export default class Navbar extends Component {
           <div className="dropdown-menu">
             <span className="dropdown-item">
               <NavLink className="nav-link" to="/dashboard">
-                <span>DashBoard</span>
+                <span className="nav-login-dashboard-text">DashBoard</span>
               </NavLink>
             </span>
             <span className="dropdown-item">
@@ -42,8 +42,8 @@ export default class Navbar extends Component {
       );
     } else {
       return (
-        <NavLink className="nav-link" to="/Login">
-          <span>Đăng Nhập</span>
+        <NavLink className="nav-link" to="/login">
+          <span className="nav-login-text">Đăng Nhập</span>
         </NavLink>
       );
     }
@@ -75,7 +75,7 @@ export default class Navbar extends Component {
             </NavLink>
           </div>
           <div className="nav-item nav-menu">
-            <NavLink className="nav-link" to="/Login">
+            <NavLink className="nav-link" to="/apps">
               <span>Ứng dụng</span>
             </NavLink>
           </div>

@@ -1,0 +1,36 @@
+.app-body {
+    background-image: url("./../img/backapp.jpg");
+    background-size: cover;
+    z-index: 0;
+    height: 400px;
+    margin-top: 50px;
+}
+.app-content {
+    margin-top: 20px;
+}
+.app-text {
+    margin-top: 60px;
+    text-align: center;
+}
+.text-left {
+    color: white;
+    font-size: 30px;
+}
+.text-small {
+    color: white;
+    font-size: 20;
+}
+.phone-body {
+    position: relative;
+}
+.img-phone {
+    padding: 0 28%;
+    height: 350px;
+    margin-top: 20px;
+}
+.slide-phone {
+    position: absolute;
+    width: 200px;
+    height: 100px !important;
+
+}

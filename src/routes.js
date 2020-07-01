@@ -5,10 +5,8 @@ import Apps from "./Page/Home/Apps";
 import TheaterList from "./Page/Home/TheaterList";
 import DetailMovie from "./Page/Home/DetailMovie";
 import SeatSelect from "./Page/Home/BookingTicket/SeatSelect";
-
-// import Login from "./Page/Home/Login";
-
 import DashBoard from "./Page/Admin/DashBoard";
+import RegistereAccount from "./Page/Home/RegistereAccount";
 
 const RouterHome = [
   {
@@ -17,9 +15,9 @@ const RouterHome = [
     component: Home,
   },
   {
-    path:"/login/home",
-    exact:true,
-    component:Home,
+    path: "/login/home",
+    exact: true,
+    component: Home,
   },
   {
     path: "/CalendarScreening",
@@ -50,6 +48,11 @@ const RouterHome = [
     path: "/booking-ticket/:id",
     exact: false,
     component: SeatSelect,
+  },
+  {
+    path: "/registereAccount",
+    exact: false,
+    component: RegistereAccount,
   },
 ];
 

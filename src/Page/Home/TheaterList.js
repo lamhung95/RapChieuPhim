@@ -26,7 +26,7 @@ class TheaterList extends Component {
     //==============
     this.props.getTheaterLogo();
     this.props.getCinemaMovieShow();
-    // console.log(this.props.getCinemaMovieShow);
+    this.props.getListMovie()
   }
 
   renderlogo = (id) => {
@@ -127,14 +127,8 @@ class TheaterList extends Component {
   };
   //==============================
 
-  // handleMovieShow=()=>{
-  //   const getMovieShow = this.props.listCinemaMovieShow
-  //   const id = this.state.idCinema
-  //   // console.log(id)
-  //   // console.log(xx)
-  // }
-
   render() {
+    // console.log(this.props)
     return (
       <div className="container">
         <div className="theater-content">
@@ -273,7 +267,7 @@ class TheaterList extends Component {
               </div>
             </div>
             <div className="col-4">
-              {/* <div>{this.handleMovieShow()}</div> */}
+              {/* {this.renderMovie()} */}
             </div>
           </div>
         </div>
@@ -294,6 +288,9 @@ const mapStateToProps = (state) => {
     //==============
     listCinemaMovieShow: state.movieReducer.listCinemaMovieShow,
     listTheaterLogo: state.movieReducer.listTheaterLogo,
+
+    listMovie: state.movieReducer.listMovie,
+    listDetailsMovie: state.movieReducer.listDetailMovie,
     
   };
 };
@@ -325,6 +322,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     getCinemaMovieShow: () => {
       dispatch(action.actGetCinemaMovieShowAPI());
+    },
+    getListMovie: () => {
+      dispatch(action.actGetListMovieAPI());
+    },
+    getDetailMovie: (id) => {
+      dispatch(action.actGetDetailMovieAPI(id));
     },
   };
 };

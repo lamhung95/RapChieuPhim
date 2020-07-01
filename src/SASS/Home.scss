@@ -1,13 +1,19 @@
-.show-movie{
+.home-body {
+    background-image: url("./../img/photo-1484950763426-56b5bf172dbb.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.show-movie {
     // background-image: url("https://wallpaperset.com/w/full/4/6/7/96482.jpg");
     // background-repeat: no-repeat;
     // background-attachment: fixed;
 
-//     border: none;
-//     box-shadow: 2px 2px 10px;
+    //     border: none;
+    //     box-shadow: 2px 2px 10px;
 }
 .search {
-    margin:10px;
+    margin: 10px;
     // width: 400px;
     margin-right: 0px;
 }
@@ -17,21 +23,37 @@
 .calendar {
     margin-bottom: 50px;
 }
-.calendar{
+.calendar {
     text-align: right !important;
     margin: 10px;
 }
 .calendar span {
     font-size: 25px;
-    color: #FA5238;
+    color: #fa5238;
 }
 .slick-dots {
     bottom: -2px !important;
 }
 .form-movie-show {
+    background-image: url("./../img/White-Background-Image-006.jpg");
+    background-size: cover;
     box-shadow: 1px 1px 10px;
+}
+.title-fix {
+    margin-top: 60px;
 }
 .title-fix h3 {
     text-align: center;
-    color: #FA5238;
+    color: #fa5238;
+}
+// .apps {
+//     margin-top: 20px;
+// }
+.theater-list {
+    margin-top: 80px;
+}
+.layzy-load {
+    width: 700px;
+    height: 700px;
+    background-color: red;
 }

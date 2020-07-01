@@ -48,8 +48,8 @@ class DetailMovie extends Component {
   };
   renderHTML = (id) => {
     const { movie } = this.props;
-    // const dd = dayjs();
-    const xx = "1/2/2019";
+    const toDay = "1/2/2019";
+    console.log(movie);
     if (movie.lichChieu && movie.lichChieu !== -1) {
       return movie.lichChieu.map((item) => {
         const getDatetime = new Date(
@@ -57,40 +57,7 @@ class DetailMovie extends Component {
         ).toLocaleDateString();
         if (
           (item.thongTinRap.maHeThongRap === id) === true &&
-          getDatetime === xx
-        ) {
-          return (
-            <div key={item.maLichChieu} className="show-time-theater row">
-              <div className="show-time-details">
-                {/* <div>{item.thongTinRap.tenRap}</div> */}
-                <h6 className="movie-title" key={item.maCumRap}>
-                  {item.thongTinRap.tenCumRap}
-                </h6>
-                <div>{item.thoiLuong} Phút</div>
-                <div>
-                  <Link to={`/booking-ticket/${item.maLichChieu}`}>
-                    {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          );
-        }
-      });
-    }
-  };
-  renderHTML = (id) => {
-    const { movie } = this.props;
-    const xx = "1/2/2019";
-    // console.log(movie);
-    if (movie.lichChieu && movie.lichChieu !== -1) {
-      return movie.lichChieu.map((item) => {
-        const getDatetime = new Date(
-          item.ngayChieuGioChieu
-        ).toLocaleDateString();
-        if (
-          (item.thongTinRap.maHeThongRap === id) === true &&
-          getDatetime === xx
+          getDatetime === toDay
         ) {
           console.log(item);
           return (
@@ -104,7 +71,7 @@ class DetailMovie extends Component {
                 <div>{item.thongTinRap.tenRap}</div>
               </div>
 
-              <Link to={`/booking-ticket/${item.maLichChieu}`}>
+              <Link to={  `/booking-ticket/${item.maLichChieu}`}>
                 <button className="btn btn-success">Chọn Ghế</button>
               </Link>
             </div>
@@ -146,7 +113,7 @@ class DetailMovie extends Component {
     const { movie } = this.props;
     console.log(movie);
     return (
-      <div>
+      <div className="detailMovieBody">
         <div className="bg-content">
           <div
             style={{ backgroundImage: `url(${movie.hinhAnh})` }}
@@ -173,24 +140,29 @@ class DetailMovie extends Component {
                         data-toggle="modal"
                         data-target="#myModal"
                       >
-                        TRAILLER
+                        Trailler
                       </button>
+                      {/* The Modal */}
                       <div className="modal" id="myModal">
                         <div className="modal-dialog">
                           <div className="modal-content">
                             <div className="modal-body">
-                              <button
+                            <button
                                 type="button"
                                 className="close"
                                 data-dismiss="modal"
+                                aria-label="close"
                               >
-                                ×
+                                <span aria-hidden="true">x</span>
                               </button>
                               <iframe
                                 title="trailer"
-                                width="420"
-                                height="315"
+                                width="914"
+                                height="514"
                                 src={movie.trailer}
+                                frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
                               ></iframe>
                             </div>
                           </div>

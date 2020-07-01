@@ -41,7 +41,13 @@ function App() {
         <Switch>
           {ShowMenuHome(RouterHome)}
           {showMenuAdmin(RouterAddmin)}
-          <Route exact={false} path="/login" component={Login} />
+          {/* <div className="xx" > */}
+            <Route
+              exact={false}
+              path="/login"
+              component={Login}
+            />
+          {/* </div> */}
         </Switch>
       </div>
     </BrowserRouter>

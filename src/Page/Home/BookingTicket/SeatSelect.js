@@ -1,11 +1,8 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import * as action from "./../../../Redux/action";
-// import TicketSelect from "./TicketSelect";
-// import "./../../../SASS/Booking.scss";
 import "./../../../SASS/Booking.scss";
 import CountDownTime from "./CountDownTime";
-// import { findIndex } from "lodash-es";
 
 class SeatSelect extends PureComponent {
   constructor(props) {
@@ -35,23 +32,25 @@ class SeatSelect extends PureComponent {
       return (
         <tbody>
           <tr>
-            <td>TÊN PHIM:</td>
+            <td className="movie-text-name">
+              <b>TÊN PHIM:</b>
+            </td>
             <td>{movie.thongTinPhim.tenPhim}</td>
           </tr>
           <tr>
-            <td>Ngày chiếu:</td>
+            <td className="movie-text">Ngày Chiếu:</td>
             <td>{movie.thongTinPhim.ngayChieu}</td>
           </tr>
           <tr>
-            <td>Giờ chiếu:</td>
-            <td>{movie.thongTinPhim.gioChieu}</td>
+            <td className="movie-text">Giờ Chiếu:</td>
+            <td className="show-time-text">{movie.thongTinPhim.gioChieu}</td>
           </tr>
           <tr>
-            <td>Cụm rap:</td>
+            <td className="movie-text">Cụm Rạp:</td>
             <td>{movie.thongTinPhim.tenCumRap}</td>
           </tr>
           <tr>
-            <td>Rạp:</td>
+            <td className="movie-text">Rạp:</td>
             <td>{movie.thongTinPhim.tenRap}</td>
           </tr>
         </tbody>
@@ -98,11 +97,14 @@ class SeatSelect extends PureComponent {
   };
   seatChecking = () => {
     const getSeat = this.state.checkingSeat;
-    console.log(getSeat);
     if (getSeat) {
       return getSeat.map((item) => {
         // console.log(item);
-        return <td key={item.maGhe}>{item.tenGhe}</td>;
+        return (
+          <td className="seat-checking" key={item.maGhe}>
+            {item.tenGhe},{" "}
+          </td>
+        );
       });
     }
   };
@@ -110,7 +112,7 @@ class SeatSelect extends PureComponent {
   totalTicket = () => {
     const getPrice = this.state.checkingSeat.map((item) => item.giaVe);
     const total = getPrice.reduce((x, y) => x + y, 0);
-    return <td>{total}</td>;
+    return <td className="total-ticket">{total} VNĐ</td>;
   };
   checkSeat = () => {
     const { danhSachGhe } = this.props.Seat;
@@ -139,19 +141,16 @@ class SeatSelect extends PureComponent {
     this.setState({
       datVe: getState,
     });
-    this.props.booked(this.state.datVe);
-  };
-
-  seatBooked = (id) => {
-    const listSeat = this.props.Seat;
-   
+    if (this.state.checkingSeat.length < 1) {
+      alert("Bạn chưa chọn ghế!");
+    } else {
+      this.props.booked(this.state.datVe);
+    }
   };
   render() {
-    const xx = this.props.Seat
-  
     return (
-      <div className="container">
-        <div className="col-12 border form-inline booking-content">
+      <div className="col-12 booking">
+        <div className="container col-9 border form-inline booking-content">
           <div className="col-8 container booking-list-seat ">
             <div>
               <div>{this.renderTheater()}</div>
@@ -166,7 +165,7 @@ class SeatSelect extends PureComponent {
               <div className="seatList">
                 <div className="seat-inline">
                   <span>A </span>
-                  <div id="ck-button">                   
+                  <div id="ck-button">
                     <label>
                       <input
                         id="1"
@@ -1644,20 +1643,18 @@ class SeatSelect extends PureComponent {
               <tbody>
                 <tr>
                   <td>Ghế chọn:</td>
-                  {this.seatChecking()}
+                  <td>{this.seatChecking()}</td>
                 </tr>
                 <tr>
-                  <td>Tổng tiền:</td>
+                  <td className="movie-text">Tổng tiền:</td>
                   {this.totalTicket()}
-                </tr>
-                <tr>
-                  <td></td>
                 </tr>
               </tbody>
             </table>
             <div>
               <button
                 className="btn btn-success btn-block"
+                // className={this.state.datVe.length}
                 type="submit"
                 onClick={() => this.handleBook()}
               >

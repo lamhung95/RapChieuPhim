@@ -171,6 +171,7 @@ export const actBookedApi = (listBooked) => {
     })
       .then((rs) => {
         alert(rs.data);
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -257,7 +258,7 @@ export const actUpdateUserAPI = (user) => {
 
 export const actDeleteUser = (taiKhoan) => {
   const userAccount = JSON.parse(localStorage.getItem("user"));
-  return (disptach) => {
+  return () => {
     Axios({
       method: "DELETE",
       url: `${urlAPI}/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`,
@@ -265,6 +266,22 @@ export const actDeleteUser = (taiKhoan) => {
         Authorization: `Bearer ${userAccount.accessToken}`,
       },
     });
+  };
+};
+
+export const actRegistereAccountAPI = (user) => {
+  return ()=> {
+    Axios({
+      method: "POST",
+      url: `${urlAPI}/api/QuanLyNguoiDung/DangKy`,
+      data: user,
+    })
+      .then(rs=>{
+        console.log(rs.data)
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
   };
 };
 

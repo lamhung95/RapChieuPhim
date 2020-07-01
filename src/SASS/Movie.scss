@@ -9,7 +9,7 @@
     align-items: center !important;
     text-align: center !important;
 }
-.movie-title{
+.movie-title {
     text-align: center;
 }
 
@@ -18,4 +18,24 @@
     width: 200px;
     text-align: center;
     padding: 10px;
+}
+.movie-button {
+    opacity: 0;
+}
+.film:hover .movie-name {
+    opacity: 0;
+}
+.film:hover .movie-button {
+    opacity: 1;
+    transition: all 1s;
+}
+.info .movie-button {
+    position: absolute;
+    bottom: 30px;
+    width: 200px;
+    // left: 0px;
+}
+.movie-button .btn-booking {
+    margin: 5px;
+    width:200px;
 }

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import "./../../SASS/Carousel.scss"
 
 export default class Carousel extends Component {
   render() {
     return (
-      <div>
+      <div className="carousel-content">
         <div id="demo" className="carousel slide" data-ride="carousel">
           <ul className="carousel-indicators">
             <li data-target="#demo" data-slide-to={0} className="active" />

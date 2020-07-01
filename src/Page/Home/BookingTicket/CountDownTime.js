@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import "./../../../SASS/CountDownTime.scss"
 
 export default class CountDownTime extends Component {
   state = {
-    minutes: 60,
+    minutes: 20,
     seconds: 0,
   };
 
@@ -13,6 +14,9 @@ export default class CountDownTime extends Component {
         this.setState(({ seconds }) => ({
           seconds: seconds - 1,
         }));
+      }
+      if(minutes ===0 && seconds ===0){
+        window.location.reload();
       }
       if (seconds === 0) {
         if (minutes === 0) {
@@ -34,7 +38,7 @@ export default class CountDownTime extends Component {
     return (
       <div className="countDownTime">
         {minutes === 0 && seconds === 0 ? (
-          <h1>Busted!</h1>
+          alert("Hết thời gian giữ ghế!!!")
         ) : (
           <span>
             <p className="title-time">Thời gian giữ ghế</p>

@@ -1,15 +1,29 @@
+.body {
+    overflow: hidden;
+}
 .login-content {
-    border: .5px solid;
+    background-image:  linear-gradient(to bottom,rgba(20,50,93,.9),rgba(8,22,48,.9));
+    border: 0.5px solid;
     border-radius: 3px;
     top: 50px;
     box-shadow: 5px;
-    width: 50%;
-
+    max-width: 300px;
+    position: absolute;
+    text-align: center;
+    align-items: center;
 }
-.login-content h3{
+.login {
+    background-image: url("./../img/bg2.jpg");
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 700vh;
+}
+.login-content h3 {
     text-align: center;
 }
-.form-content button{
+.form-content button {
     text-align: center !important;
     align-items: center !important;
     width: 70%;
