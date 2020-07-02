@@ -55,7 +55,6 @@ class Login extends Component {
               <button
                 type="submit"
                 className="btn btn-success"
-                onClick={this.handleLogin()}
               >
                 Đăng Nhập
               </button>
