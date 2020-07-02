@@ -26,12 +26,11 @@ class TheaterList extends Component {
     //==============
     this.props.getTheaterLogo();
     this.props.getCinemaMovieShow();
-    this.props.getListMovie()
+    this.props.getListMovie();
   }
 
   renderlogo = (id) => {
     const theaterLogo = this.props.listTheaterLogo;
-    // console.log(this.state)
     if (theaterLogo.length > 0) {
       const getLogo = theaterLogo.find((item) => item.maHeThongRap === id);
       return (
@@ -47,7 +46,6 @@ class TheaterList extends Component {
   //=====================================
   renderTheaterBHDStar = () => {
     const theater = this.props.listTheater;
-    // console.log(theater);
     if (theater) {
       return theater.map((item) => {
         return (
@@ -128,7 +126,6 @@ class TheaterList extends Component {
   //==============================
 
   render() {
-    // console.log(this.props)
     return (
       <div className="container">
         <div className="theater-content">
@@ -266,9 +263,7 @@ class TheaterList extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-4">
-              {/* {this.renderMovie()} */}
-            </div>
+            <div className="col-4">{/* {this.renderMovie()} */}</div>
           </div>
         </div>
       </div>
@@ -291,7 +286,6 @@ const mapStateToProps = (state) => {
 
     listMovie: state.movieReducer.listMovie,
     listDetailsMovie: state.movieReducer.listDetailMovie,
-    
   };
 };
 

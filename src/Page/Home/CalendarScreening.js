@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import Movie from "./../../Component/movie";
 import { connect } from "react-redux";
 import * as action from "../../Redux/action";
-// import MovieShow from "./../../Component/MovieShow"
-
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import "./../../SASS/Calendar-screening.scss";
 
 class CalendarScreening extends Component {
@@ -21,8 +18,6 @@ class CalendarScreening extends Component {
     const month = d.getMonth() + 1;
     const year = d.getFullYear();
     const dayObject = month + "/" + day + "/" + year;
-    console.log(dayObject);
-
     return getListMovie.listMovie.map((item) => {
       const yy = new Date(item.ngayKhoiChieu).toLocaleDateString();
       if (yy <= dayObject) {

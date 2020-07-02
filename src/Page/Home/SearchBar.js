@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./../../SASS/Search-film.scss";
 import { connect } from "react-redux";
 import * as action from "../../Redux/action";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom";
 
 class SearchBar extends Component {
   constructor(props) {
@@ -14,14 +14,15 @@ class SearchBar extends Component {
   }
   componentDidMount() {
     this.props.getListMovie();
-    // this.props.getDetailMovie();
-    console.log(this.state);
   }
   handleMovieName = () => {
     const getMovieName = this.props.listMovie;
-    // console.log(getMovieName);
     return getMovieName.map((item) => {
-      return <NavLink to={`/detail-movie/${item.maPhim}`}><div>{item.tenPhim}</div></NavLink>
+      return (
+        <NavLink to={`/detail-movie/${item.maPhim}`}>
+          <div>{item.tenPhim}</div>
+        </NavLink>
+      );
     });
   };
   render() {
@@ -37,7 +38,7 @@ class SearchBar extends Component {
             Tìm nhanh...
           </button>
           <div className="dropdown-menu">
-            <div className="dropdown-item" href="#">
+            <div className="dropdown-item">
               {this.handleMovieName()}
             </div>
           </div>

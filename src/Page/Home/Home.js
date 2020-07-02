@@ -4,19 +4,13 @@ import TheaterList from "./TheaterList";
 import SearchBar from "./SearchBar";
 import Carousel from "./../Home/Carousel";
 import Apps from "./Apps";
-// import Navbar from "./../../Component/Navbar"
-// import Xx from "./../../Component/xx";
-
+import CalendaSreening from "./CalendarScreening"
 import "./../../SASS/Home.scss";
-
-const CalendaSreening=lazy(()=>import("./CalendarScreening"));
 
 export default class Home extends Component {
   render() {
     return (
       <div className="home-body">
-      <Suspense fallback={<div className="lazy-load">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>}>
-      
         <div className="">
           <Carousel />
         </div>
@@ -25,7 +19,6 @@ export default class Home extends Component {
           <div className="form-movie-show">
             <div className="calendar">
               <SearchBar />
-              {/* <span>Đang Chiếu</span> */}
               <CalendaSreening />
             </div>
           </div>
@@ -37,8 +30,6 @@ export default class Home extends Component {
         <div>
           <Apps />
         </div>
-      
-      </Suspense>
       </div>
     );
   }

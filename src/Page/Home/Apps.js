@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "./../../SASS/App.scss";
 import xx from "./../../img/mobile.jpg";
-// import SliderApps from "./../../Component/sliderApps";
-// import s1 from "./../../img/slider/slide1.jpg";
-// import s2 from "./../../img/slider/slide2.jpg";
-// import s3 from "./../../img/slider/slide3.jpg";
 
 export default class Apps extends Component {
   render() {

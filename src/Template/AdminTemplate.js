@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
-const AdminLayout = props => {
+const AdminLayout = (props) => {
   return (
     <div>
       <div>NAVBAR ADMIN</div>
@@ -15,7 +15,7 @@ export default function AdminTemplate({ Component, ...props }) {
   return (
     <Route
       {...props}
-      render={propsComponent => {
+      render={(propsComponent) => {
         if (localStorage.getItem("user")) {
           return (
             <AdminLayout>

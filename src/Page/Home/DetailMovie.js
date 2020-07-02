@@ -2,12 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "./../../Redux/action";
 import { Link } from "react-router-dom";
-// import Calendar from "../Home/Calendar";
-
-// import moment from "moment"
 import dayjs from "dayjs";
 import range from "lodash-es/range";
-
 import "./../../SASS/Details-movie.scss";
 import SimpleBar from "simplebar-react";
 import "simplebar/dist/simplebar.min.css";
@@ -15,10 +11,8 @@ import "simplebar/dist/simplebar.min.css";
 class DetailMovie extends Component {
   constructor(props) {
     super(props);
-    // this.addActiveClass = this.addActiveClass.bind(this);
     this.state = {
       setday: [this.getToDay()],
-      // active: false,
     };
   }
 
@@ -35,8 +29,6 @@ class DetailMovie extends Component {
 
   renderlogo = (id) => {
     const theaterLogo = this.props.listTheaterLogo;
-    // console.log(this.state);
-    // console.log(this.state)
     if (theaterLogo.length > 0) {
       const getLogo = theaterLogo.find((item) => item.maHeThongRap === id);
       return (
@@ -46,10 +38,10 @@ class DetailMovie extends Component {
       );
     }
   };
+
   renderHTML = (id) => {
     const { movie } = this.props;
     const toDay = "1/2/2019";
-    console.log(movie);
     if (movie.lichChieu && movie.lichChieu !== -1) {
       return movie.lichChieu.map((item) => {
         const getDatetime = new Date(
@@ -59,7 +51,6 @@ class DetailMovie extends Component {
           (item.thongTinRap.maHeThongRap === id) === true &&
           getDatetime === toDay
         ) {
-          console.log(item);
           return (
             <div key={item.maLichChieu} className="show-time-theater row">
               <div className="show-time-details">
@@ -71,7 +62,7 @@ class DetailMovie extends Component {
                 <div>{item.thongTinRap.tenRap}</div>
               </div>
 
-              <Link to={  `/booking-ticket/${item.maLichChieu}`}>
+              <Link to={`/booking-ticket/${item.maLichChieu}`}>
                 <button className="btn btn-success">Chọn Ghế</button>
               </Link>
             </div>
@@ -83,8 +74,6 @@ class DetailMovie extends Component {
 
   renderDayOfWeek = () => {
     const dd = dayjs();
-    // const boxClass = ["day-cell"];
-    console.log(dd.date());
     const mm = dd.daysInMonth();
     return range(mm).map((item) => {
       const day = item + 1;
@@ -142,12 +131,11 @@ class DetailMovie extends Component {
                       >
                         Trailler
                       </button>
-                      {/* The Modal */}
                       <div className="modal" id="myModal">
                         <div className="modal-dialog">
                           <div className="modal-content">
                             <div className="modal-body">
-                            <button
+                              <button
                                 type="button"
                                 className="close"
                                 data-dismiss="modal"

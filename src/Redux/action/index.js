@@ -270,14 +270,14 @@ export const actDeleteUser = (taiKhoan) => {
 };
 
 export const actRegistereAccountAPI = (user) => {
-  return ()=> {
+  return () => {
     Axios({
       method: "POST",
       url: `${urlAPI}/api/QuanLyNguoiDung/DangKy`,
       data: user,
     })
-      .then(rs=>{
-        console.log(rs.data)
+      .then((rs) => {
+        console.log(rs.data);
       })
       .catch((err) => {
         console.log(err.response.data);

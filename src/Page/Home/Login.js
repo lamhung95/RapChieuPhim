@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "./../../Redux/action";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 import "./../../SASS/Login.scss";
 
 class Login extends Component {
@@ -12,30 +12,21 @@ class Login extends Component {
       matKhau: "",
     };
   }
-  handleLogin = () => {
-    // console.log(this.props)
-    // const getAcount = this.state.taiKhoan
-    // localStorage.setItem('taiKhoan',getAcount)
-    // alert(localStorage.getItem('userAdmin'))
-  };
   handleOnchange = (event) => {
     const { name, value } = event.target;
-    console.log(name,value)
     this.setState({
       [name]: value,
     });
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.login(this.state, this.props.history)
-    console.log(this.props.history)
-    
+    this.props.login(this.state, this.props.history);
   };
   render() {
     return (
       <div className="login">
-      <div className="container login-content col-6">
-        <h3>Đăng Nhập</h3>
+        <div className="container login-content col-6">
+          <h3>Đăng Nhập</h3>
           <div className="col-sm-6 mx-auto">
             <form className="form-content" onSubmit={this.handleSubmit}>
               <div className="form-group">
@@ -57,7 +48,9 @@ class Login extends Component {
                 />
               </div>
               <div className="registere-account">
-                <Link to="/registereAccount"><span>Chưa có tài khoản?</span></Link>
+                <Link to="/registereAccount">
+                  <span>Chưa có tài khoản?</span>
+                </Link>
               </div>
               <button
                 type="submit"

@@ -60,7 +60,6 @@ class SeatSelect extends PureComponent {
 
   renderTheater = () => {
     const theater = this.props.Seat;
-    // console.log(this.state);
     if (theater.thongTinPhim) {
       return (
         <div className="booking-theater">
@@ -99,7 +98,6 @@ class SeatSelect extends PureComponent {
     const getSeat = this.state.checkingSeat;
     if (getSeat) {
       return getSeat.map((item) => {
-        // console.log(item);
         return (
           <td className="seat-checking" key={item.maGhe}>
             {item.tenGhe},{" "}
@@ -114,27 +112,16 @@ class SeatSelect extends PureComponent {
     const total = getPrice.reduce((x, y) => x + y, 0);
     return <td className="total-ticket">{total} VNĐ</td>;
   };
-  checkSeat = () => {
-    const { danhSachGhe } = this.props.Seat;
-    const xx = this.state.checkingSeat;
-    // console.log(xx);
-    // console.log(danhSachGhe);
-    xx.map((item) => {
-      return console.log(danhSachGhe.indexOf(xx));
-    });
-  };
 
   handleBook = () => {
     const showTimeID = this.props.Seat.thongTinPhim.maLichChieu;
     const getUserAccount = JSON.parse(localStorage.getItem("user"));
     const listSeat = this.state.checkingSeat;
     const getState = this.state.datVe;
-
     const getTicket = listSeat.map((item) => {
       const ticketItem = { maGhe: item.maGhe, giaVe: item.giaVe };
       return ticketItem;
     });
-
     getState.maLichChieu = showTimeID;
     getState.danhSachVe = getTicket;
     getState.taiKhoanNguoiDung = getUserAccount.taiKhoan;
@@ -159,7 +146,7 @@ class SeatSelect extends PureComponent {
               </div>
             </div>
             <div className="screen-item">
-              <h6>Screen{this.checkSeat()}</h6>
+              <h6>Screen</h6>
             </div>
             <div className="seat-content">
               <div className="seatList">

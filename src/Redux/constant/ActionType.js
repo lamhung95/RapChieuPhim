@@ -8,9 +8,8 @@ export const GET_THEATER_GALAXY = "GET_THEATER_GALAXY";
 export const GET_THEATER_LOTTE = "GET_THEATER_LOTTE";
 export const GET_THEATER_MAGAGS = "GET_THEATER_MAGAGS";
 //======================
-export const GET_CINEMA_MOVIE_SHOW="GET_CINEMA_MOVIE_SHOW";
+export const GET_CINEMA_MOVIE_SHOW = "GET_CINEMA_MOVIE_SHOW";
 export const GET_DETAIL_MOVIE = "GET_DETAIL_MOVIE";
 export const GET_LIST_SEAT = "GET_LIST_SEAT";
 //===========
-export const GET_ACCOUNTS ="GET_ACCOUNTS"
- 
+export const GET_ACCOUNTS = "GET_ACCOUNTS";
